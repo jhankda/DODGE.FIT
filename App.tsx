@@ -1,7 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { LogBox } from 'react-native';
+
+
 
 export default function App() {
+  if (!__DEV__) {
+    LogBox.ignoreAllLogs();
+    console.log = () => {};
+    console.warn = () => {};
+    console.error = () => {};
+  }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
