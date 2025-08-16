@@ -1,32 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { LogBox } from 'react-native';
-import {Redirect} from "expo-router";
+import { useEffect, useState } from "react";
+import { SplashScreen, Stack, useRouter } from "expo-router";
+import {useFonts} from "expo-font"
 
-
+console.log("ouside----------------------------------------------")
 
 export default function App() {
-  
-  if (!__DEV__) {
-    LogBox.ignoreAllLogs();
-    console.log = () => {};
-    console.warn = () => {};
-    console.error = () => {};
-  }
+  SplashScreen.preventAutoHideAsync();
+  const router = useRouter();
+  const [ready, setReady] = useState(false);
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  useEffect(() => {
+    async function prepare() {
+      try {
+        console.log("try---------------------------------------")
+        const [fontsLoaded] = useFonts({
+          'SpaceGrotesk':require('./assets/fonts/SpaceGrotesk-Regular.ttf')
+        })
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      } catch (err) {
+        console.error(err);
+      } finally {
+        console.log("final-----------------------------------")
+        setReady(true);
+        SplashScreen.hideAsync();
+      }
+    }
+    console.log("func--------------------------------")
+
+    prepare();
+  }, []);
+
+  useEffect(() => {
+    if (ready) {
+      router.replace("./app/(auth)");
+      console.log("ready------------------------------------------")
+    }
+  }, [ready]);
+
+  return <Stack screenOptions={{ headerShown: false }} />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
