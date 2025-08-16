@@ -12,9 +12,9 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: '#1a1a1a' },
         }}
       >
-        {/* <Stack.Screen name="splash" />
+        {/* <Stack.Screen name="splash" /> */}
         <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(user)" />
+        {/* <Stack.Screen name="(user)" />
         <Stack.Screen name="(coach)" />
         <Stack.Screen name="(admin)" />
         <Stack.Screen name="(scanner)" /> */}
