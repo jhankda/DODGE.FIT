@@ -2,14 +2,19 @@
   "expo": {
     "name": "DODGE.FIT",
     "slug": "DODGE.FIT",
-    "scheme":"dodgefit",
+    "scheme": "dodgefit",
     "version": "1.0.0",
-    "plugins":["expo-router",
-      ["expo-splash-screen", {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-      }]],
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

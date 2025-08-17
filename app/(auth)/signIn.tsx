@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
+import ContinueButton from "../../components/WideButton";
+import KeyboardWrapper from "../../components/FormScreen";
 
 export default function LoginScreen() {
   const [role, setRole] = useState("User");
@@ -16,6 +18,7 @@ export default function LoginScreen() {
   }
 
   return (
+    <KeyboardWrapper>
     <ScrollView contentContainerStyle={styles.container}>
      
       <View>
@@ -79,13 +82,14 @@ export default function LoginScreen() {
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.continueButton}>
-          <View style={styles.continueContainer}>
-            <Text style={styles.continueButtonText}>Continue</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+     
+      <ContinueButton
+        title="Sign Up"
+        gradient
+        onPress={() => console.log("Sign Up pressed")}
+        containerStyle={{top:601, position:"absolute"}}
+      />
+
 
       <TouchableOpacity style={styles.forgotContainer}>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
@@ -96,10 +100,9 @@ export default function LoginScreen() {
 
           <Text style={styles.signupText}>
             Don’t have an account?
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSignUp}>
               <Text
-                style={styles.signupLink}
-                onPress={handleSignUp}> Sign Up</Text>
+                style={styles.signupLink}> Sign Up</Text>
             </TouchableOpacity>
           </Text>
           <View style={[]}></View>
@@ -108,6 +111,7 @@ export default function LoginScreen() {
       </View>
 
     </ScrollView>
+    </KeyboardWrapper>
   );
 }
 
