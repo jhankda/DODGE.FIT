@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 390,
+    width: "auto",
     height: 72,
     padding: 16,
     paddingBottom: 8,

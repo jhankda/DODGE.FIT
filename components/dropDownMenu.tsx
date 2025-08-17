@@ -93,26 +93,26 @@ export default function DropdownInput({
 
 const styles = StyleSheet.create({
   signUpRoleContainer: {
-    flexDirection:"row",
-    width:390,
+    // flexDirection:"row",
+    width:"auto",
     height:112,
-    maxWidth:480,
+    maxWidth:"auto",
     paddingHorizontal:16,
     paddingVertical:12,
     gap:16
   },
   signUpRole: {
-    width:358,
+    width:"auto",
     height:88,
     minWidth:160
   },
   signUpRoleTextContainer: {
-    width:358,
+    width:"auto",
     height:32,
     paddingBottom:8,
   },
   signUpRoleText: {
-    width:358,
+    width:"auto",
     height:24,
     fontSize: 16,
     lineHeight:24,
@@ -121,18 +121,20 @@ const styles = StyleSheet.create({
     letterSpacing:0
   },
   signUpRoleInputContainer:{
-    width:358,
+    width:"auto",
     height:56,
     minWidth:160,
   },
   signUpRoleInputBox: {
-    width:358,
+    flex:1,
+    width:"auto",
     height:56,
     borderRadius:8,
     backgroundColor:"#EBE8F2"
   },
   signUpRoleInputText: {
-    width:206,
+    alignSelf:"flex-start",
+    width:"auto",
     height:24,
     top:16,
     left:14,

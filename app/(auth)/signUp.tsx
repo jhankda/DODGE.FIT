@@ -52,7 +52,7 @@ export default function signUpScreen() {
         <DropdownInput
           options={["Coach", "User", "Scanner Device"]}
           placeholder="Select - User/Coach/Admin"
-          icon={<ScrollMenu height={26} width={13} left={329} bottom={8} fill="#66578F" />}
+          icon={<ScrollMenu height={26} width={13} right={29} bottom={8} fill="#66578F" alignSelf={"flex-end"} />}
           onSelect={(value) => console.log("Selected:", value)}
 
 
@@ -130,52 +130,12 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#FAFAFA",
-    width: 390,
+    width:"auto",
     height: 965,
     minHeight: 844,
   },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 390,
-    height: 72,
-    padding: 16,
-    paddingBottom: 8,
-    backgroundColor: "#FAFAFA"
-  },
-  backButtonContainer: {
-    justifyContent: "space-between",
-    flexDirection: "row",
-    width: 48,
-    height: 48
-  },
-  backButton: {
-    height: 24,
-    width: 24
-  },
-  buttonContainer: {
-    width: 18,
-    height: 15
-  },
-  headerTitleContainer: {
-    justifyContent: "center",
-    alignSelf: "center",
-    width: 310,
-    height: 23,
-    paddingRight: 48
-  },
-  headerTitle: {
-    textAlign: "center",
-    width: 262,
-    height: 23,
-    fontWeight: "700",
-    fontSize: 18,
-    lineHeight: 23,
-    letterSpacing: 0,
-    color: "#000"
-  },
   subHeaderContainer: {
-    width: 390,
+    width: "auto",
     height: 40,
     paddingHorizontal: 16,
     paddingBottom: 12,
@@ -183,7 +143,7 @@ const styles = StyleSheet.create({
   },
   subHeader: {
     textAlign: "center",
-    width: 358,
+    width: "auto",
     height: 24,
     fontWeight: "400",
     fontSize: 16,
@@ -192,13 +152,13 @@ const styles = StyleSheet.create({
     color: "#000"
   },
   checkListContainer: {
-    width: 390,
+    width: "auto",
     height: 72,
     paddingHorizontal: 16
   },
   checkList: {
     flexDirection: "row",
-    width: 358,
+    width: "auto",
     height: 72,
     paddingVertical: 12,
     gap: 12
@@ -212,11 +172,11 @@ const styles = StyleSheet.create({
     borderColor: "#D9D4E3"
   },
   termsContainer: {
-    width: 326,
+    width: "auto",
     height: 48
   },
   termsText: {
-    width: 326,
+    width: "auto",
     height: 48,
     fontWeight: "400",
     fontSize: 16,

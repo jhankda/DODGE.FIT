@@ -22,7 +22,9 @@ export default function verifyOTP() {
             LeftIcon={<ArrowLeft width={24} height={24} fill={"#120F1A"} />}
             onLeftPress={() => { router.replace("/signUp") }}
           />
-        <View style={styles.subHeaderContainer}></View>
+        <View style={styles.subHeaderContainer}>
+          <Text style={styles.subHeaderText}>We've sent a 6-digit OTP to your email/phone.</Text>
+        </View>
           <View style={styles.subTitle}><View/>
           <Text style={styles.subHeader}>jo**@email.com || email</Text>
         </View>
@@ -66,6 +68,18 @@ const styles = StyleSheet.create({
     padding:16,
     paddingBottom:8
   },
+  subHeaderText:{
+    width:358,
+    height:46,
+    fontWeight:"700",
+    fontSize:18,
+    lineHeight:23,
+    letterSpacing:0,
+    textAlign:"center",
+    color:"#120F1A"
+
+
+  }
 
 
 
