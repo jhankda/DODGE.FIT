@@ -118,6 +118,7 @@ export default function signUpScreen() {
         <ContinueButton
           title="Signup"
           gradient
+          onPress={()=>router.replace('/verifyOTP')}
         />
       </ScrollView>
     </KeyboardWrapper>

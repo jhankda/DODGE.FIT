@@ -28,7 +28,7 @@ export default function LoginScreen() {
     switch (role) {
       case "User":
         console.log("Route to User Page")
-        router.replace('(user)')
+        router.replace('/(user)/tabs/userDashboard')
         break;
       default:
         break;
