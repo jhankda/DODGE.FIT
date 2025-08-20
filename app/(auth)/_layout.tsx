@@ -10,10 +10,12 @@ export default function AuthLayout() {
         
         },
       }}
-    >
+      >
+      <Stack.Screen name="signIn" />
+      <Stack.Screen name="resetPassword" />
+      <Stack.Screen name="forgotPassword" />
       <Stack.Screen name="verifyOTP" />
       <Stack.Screen name="signUp" />
-      <Stack.Screen name="signIn" />
     </Stack>
   );
 }

@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     width: "auto",
     height: 72,
-    paddingHorizontal: 16,
     paddingBottom: 12,
   },
   continueButton: {
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     width: "auto",
     height: 48,
-    minWidth: 112,
+    // minWidth: 112,
     maxWidth: "auto",
     borderRadius: 24,
     paddingHorizontal: 20,

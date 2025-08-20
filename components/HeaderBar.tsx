@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "auto",
     height: 72,
     padding: 16,
     paddingBottom: 8,
@@ -64,15 +63,15 @@ const styles = StyleSheet.create({
     height: 15,
   },
   headerTitleContainer: {
-    justifyContent: "center",
+    // justifyContent: "center",
     alignSelf: "center",
-    width: 310,
+    // width: 310,
     height: 23,
-    paddingRight: 48,
+    // paddingRight: 48,
   },
   headerTitle: {
-    textAlign: "center",
-    width: 262,
+    // textAlign: "center",
+    // width: 262,
     height: 23,
     fontWeight: "700",
     fontSize: 18,

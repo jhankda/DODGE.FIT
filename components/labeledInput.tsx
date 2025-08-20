@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 interface LabeledInputProps extends TextInputProps {
-  label: string;
+  label?: string;
   containerStyle?: object;
   labelStyle?: object;
   inputStyle?: object;
@@ -39,9 +39,9 @@ export default function LabeledInput({
     <View style={[styles.subContainer, containerStyle]}>
       <View style={styles.fieldContainer}>
 
-        <View style={styles.textContainer}>
+        {label && <View style={styles.textContainer}>
           <Text style={[styles.text, labelStyle]}>{label}</Text>
-        </View>
+        </View>}
 
         <View style={{ position: "relative" }}>
           {!value && (
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   subContainer: {
     width: "auto",
     height: 112,
-    maxWidth: "auto",
+    // maxWidth: "auto",
     paddingHorizontal: 16,
     paddingVertical: 12,
   },

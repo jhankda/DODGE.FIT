@@ -14,8 +14,8 @@ export default function RootLayout() {
       >
         {/* <Stack.Screen name="splash" /> */}
         <Stack.Screen name="(auth)" />
-        {/* <Stack.Screen name="(user)" />
-        <Stack.Screen name="(coach)" />
+        <Stack.Screen name="(user)" />
+         {/*<Stack.Screen name="(coach)" />
         <Stack.Screen name="(admin)" />
         <Stack.Screen name="(scanner)" /> */}
       </Stack>
