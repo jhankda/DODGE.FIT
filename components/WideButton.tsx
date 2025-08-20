@@ -29,7 +29,7 @@ export default function ContinueButton({
             colors={["#8C66E3", "#2900F3"]}
             start={{x:0,y:0}}
             end={{x:2, y:2}}
-            style={[styles.continueButton, buttonStyle]} // same shape as button
+            style={[styles.continueButton, buttonStyle]}
           >
             <View style={styles.continueContainer}>
               <Text style={[styles.continueButtonText, textStyle]}>{title}</Text>

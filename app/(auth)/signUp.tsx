@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,   } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import ArrowLeft from "../../assets/icons/arrowLeft.svg";
 import ScrollMenu from "../../assets/icons/ScrollMenu.svg";
@@ -30,14 +30,13 @@ export default function signUpScreen() {
 
   const router = useRouter()
   return (
-    
+
     <KeyboardWrapper>
-      {/* Make icons dark for light backgrounds */}
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-      <StatusBar style="auto" />
+        <StatusBar style="auto" />
 
         <HeaderBar
           title="Create Account"
@@ -120,7 +119,7 @@ export default function signUpScreen() {
           title="Signup"
           gradient
         />
-        </ScrollView>
+      </ScrollView>
     </KeyboardWrapper>
 
   )
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#FAFAFA",
-    width:"auto",
+    width: "auto",
     height: 965,
     minHeight: 844,
   },

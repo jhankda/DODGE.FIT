@@ -1,5 +1,4 @@
-// KeyboardAvoidingWrapper.tsx
-import { SafeAreaView } from "react-native-safe-area-context"; // ✅ correct import
+import { SafeAreaView } from "react-native-safe-area-context";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import React, { ReactNode } from "react";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

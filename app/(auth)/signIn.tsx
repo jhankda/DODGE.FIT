@@ -128,15 +128,12 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    // flexGrow: 2,
     backgroundColor: "#fff",
     height: 844,
-    // width: "auto",
     minHeight: 844,
   },
   logoContainer: {
     backgroundColor: "#000000",
-    // width: "auto",
     height: 218,
     alignItems: "center",
     borderWidth: 1,
