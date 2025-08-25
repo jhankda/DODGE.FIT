@@ -26,7 +26,7 @@ export default function UserDashboard() {
       <HeaderBar
       title="Dodge.fit"
       RightIcon={<PersonIcon width={24} height={24} fill={"#120F1A"} />}
-      />
+      />``
       
 
       </ScrollView>

@@ -14,14 +14,12 @@ import CalenderIcon from "../../../assets/icons/CalenderIcon.svg"
 import DunbellIcon from "../../../assets/icons/DunbellIcon.svg"
 import PlotIcon from "../../../assets/icons/PlotIcon.svg"
 import Applate from "../../../components/Applate";
-import App from "../../../App";
 
+import App from "../../../App";
 const router = useRouter()
 
 export default function UserDashboard() {
   return (
-    <KeyboardWrapper>
-
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
@@ -50,7 +48,6 @@ export default function UserDashboard() {
 
 
       </ScrollView>
-    </KeyboardWrapper>
   )
 }
 const styles = StyleSheet.create({

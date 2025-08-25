@@ -16,14 +16,16 @@ export default function UserLayout() {
     <KeyboardWrapper>
       <Tabs
         screenOptions={{
-          headerShown:false,
+          headerShown: false,
           tabBarActiveTintColor: '#000',
           tabBarInactiveTintColor: '#FAFAFA',
           tabBarStyle: {
-            height:60,
+            elevation: 0,
+            shadowOpacity: 0,
+            height: 50,
             borderTopWidth: 0.2,
             backgroundColor: '#FAFAFA',
-            borderTopColor: '#333333',
+            borderTopColor: '#FAFAFA',
           }
         }}
       >
@@ -31,53 +33,53 @@ export default function UserLayout() {
           name="userDashboard"
           options={{
             title: 'Home',
-          
+
             tabBarIcon: ({ color, size }) => (
               <HomeIcon size={size} color={color} />
             ),
           }}
         />
-      <Tabs.Screen
-        name="Profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <PersonIcon size={size} color={color} />
-          ),
-        }}
-      />
         <Tabs.Screen
-        name="myClass/index"
-        options={{
-          title: 'Classes',
-          tabBarIcon: ({ color, size }) => (
-            <CalenderIcon size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="workoutLogger"
-        options={{
-          title: 'Workout',
-          tabBarIcon: ({ color, size }) => (
-            <PlotIcon size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="progress"
-        options={{
-          title: 'Progress',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 25
-          },
-          headerTintColor: '#ca02e5',
-          tabBarIcon: ({ color, size }) => (
-            <DunbellIcon size={size} color={color} />
-          ),
-        }}
-      />
+          name="Profile"
+          options={{
+            title: 'Profile',
+            tabBarIcon: ({ color, size }) => (
+              <PersonIcon size={size} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="myClass"
+          options={{
+            title: 'Classes',
+            tabBarIcon: ({ color, size }) => (
+              <CalenderIcon size={size} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="workoutLogger"
+          options={{
+            title: 'Workout',
+            tabBarIcon: ({ color, size }) => (
+              <PlotIcon size={size} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="progress"
+          options={{
+            title: 'Progress',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 25
+            },
+            headerTintColor: '#ca02e5',
+            tabBarIcon: ({ color, size }) => (
+              <DunbellIcon size={size} color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </KeyboardWrapper>
   );

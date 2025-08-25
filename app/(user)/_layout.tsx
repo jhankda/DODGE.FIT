@@ -11,12 +11,13 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#1a1a1a' },
+          contentStyle: { backgroundColor: '#FAFAFA' },
         }}
       >
-        <Stack.Screen name="(sub=pages)" />
+        <Stack.Screen name="(subpages)" />
         <Stack.Screen name="tabs" />
         <Stack.Screen name="secondary" />
+        {/* <Stack.Screen name="tabs/myClass" /> */}
         {/* <Stack.Screen name="(admin)" />
         <Stack.Screen name="(scanner)" /> */}
       </Stack>

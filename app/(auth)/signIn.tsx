@@ -5,35 +5,45 @@ import { useRouter } from "expo-router";
 import ContinueButton from "../../components/WideButton";
 import KeyboardWrapper from "../../components/FormScreen";
 import LabeledInput from "../../components/labeledInput";
+import { useLogin } from "@hooks/useSignIn";
 
 export default function LoginScreen() {
-  const [role, setRole] = useState("User");
+  const [role, setRole] = useState<"user" | "coach" | "scanner">("user");
   const [phoneNumber, setPhoneNumber] = useState<string>()
   const [email, setEmail] = useState<string>()
-  const [password, setPassword] = useState<string>()
+  const [password, setPassword] = useState<string | undefined>()
+  const { mutate: login, isPending, error } = useLogin();
+
 
   const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
 
+  const router = useRouter()
   const roles = ["User", "Coach", "Scanner Device"];
 
-  const router = useRouter()
 
   const handleSignUp = () => {
     console.log("SignUp")
     router.replace('/signUp')
   }
 
-  const HandleLogin  = ()=>{
-    switch (role) {
-      case "User":
-        console.log("Route to User Page")
-        router.replace('/(user)/tabs/userDashboard')
-        break;
-      default:
-        break;
+
+  const HandleLogin = () => {
+    if(!email && !phoneNumber){
+      console.warn("Fill the Field")
+      return;
     }
-  }
+    if(!password){
+      console.warn("Fill the Field")
+      return;
+    }
+    login({
+      email: email || undefined,
+      phoneNo: phoneNumber || undefined,
+      password:password,
+      role:role,
+    });
+  };
 
   return (
     <KeyboardWrapper>
@@ -101,8 +111,8 @@ export default function LoginScreen() {
 
         <TouchableOpacity
           style={styles.forgotContainer}
-          onPress={()=>{router.replace("/forgotPassword")}}
-          >
+          onPress={() => { router.replace("/forgotPassword") }}
+        >
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 

@@ -8,76 +8,26 @@ import DunbellIcon from "../../../assets/icons/DunbellIcon.svg"
 import PlotIcon from "../../../assets/icons/PlotIcon.svg"
 import KeyboardWrapper from "../../../components/FormScreen";
 
-export default function UserLayout() {
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
-
-
+export default function RootLayout() {
   return (
     <KeyboardWrapper>
-      <Tabs
+      <Stack
         screenOptions={{
-          headerShown:false,
-          tabBarActiveTintColor: '#000',
-          tabBarInactiveTintColor: '#FAFAFA',
-          tabBarStyle: {
-            borderTopWidth: 0.2,
-            backgroundColor: '#FAFAFA',
-            borderTopColor: '#333333',
-          }
+          headerShown: false,
+          contentStyle: { backgroundColor: '#1a1a1a' },
         }}
       >
-        <Tabs.Screen
-          name="userDashboard"
-          options={{
-            title: 'Home',
-          
-            tabBarIcon: ({ color, size }) => (
-              <HomeIcon size={size} color={color} />
-            ),
-          }}
-        />
-        {/* <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <CalenderIcon size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <PersonIcon size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <PlotIcon size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Enroll',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 25
-          },
-          headerTintColor: '#ca02e5',
-          tabBarIcon: ({ color, size }) => (
-            <DunbellIcon size={size} color={color} />
-          ),
-        }}
-      /> */}
-      </Tabs>
+        <Stack.Screen name="myQR" />
+        {/* <Stack.Screen name="(us" /> */}
+        {/*
+         <Stack.Screen name="(coach)" />
+        <Stack.Screen name="(admin)" />
+        <Stack.Screen name="(scanner)" /> 
+        */}
+      </Stack>
     </KeyboardWrapper>
   );
 }

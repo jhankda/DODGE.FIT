@@ -1,15 +1,19 @@
 import React from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+
 
 export default function RootLayout() {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <>
-      <StatusBar style="light" backgroundColor="#1a1a1a" />
+    <QueryClientProvider client={queryClient}>
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#1a1a1a' },
+          contentStyle: { backgroundColor: '#FAFAFA' },
         }}
       >
         <Stack.Screen name="(auth)" />
@@ -20,6 +24,6 @@ export default function RootLayout() {
         <Stack.Screen name="(scanner)" /> 
         */}
       </Stack>
-    </>
+    </QueryClientProvider>
   );
 }
