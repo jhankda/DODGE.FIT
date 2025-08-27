@@ -1,25 +1,28 @@
 import React, { useRef, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-import ContinueButton from "../../components/WideButton";
-import KeyboardWrapper from "../../components/FormScreen";
-import LabeledInput from "../../components/labeledInput";
+import ContinueButton from "@components/WideButton";
+import KeyboardWrapper from "@components/FormScreen";
+import LabeledInput from "@components/labeledInput";
 import { useLogin } from "@hooks/useSignIn";
 
 export default function LoginScreen() {
-  const [role, setRole] = useState<"user" | "coach" | "scanner">("user");
-  const [phoneNumber, setPhoneNumber] = useState<string>()
-  const [email, setEmail] = useState<string>()
+  const [role, setRole] = useState<"User" | "Coach" | "Scanner Device">("User");
+  const [phoneNumber, setPhoneNumber] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
+  const [input, setInput] = useState("");
+
+
   const [password, setPassword] = useState<string | undefined>()
   const { mutate: login, isPending, error } = useLogin();
 
 
-  const emailRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
+  const emailRef = useRef<TextInput>(null)
 
   const router = useRouter()
-  const roles = ["User", "Coach", "Scanner Device"];
+  type Role = "User" | "Coach" | "Scanner Device"
+  const roles: Role[] = ["User", "Coach", "Scanner Device"];
 
 
   const handleSignUp = () => {
@@ -28,21 +31,43 @@ export default function LoginScreen() {
   }
 
 
+
   const HandleLogin = () => {
-    if(!email && !phoneNumber){
-      console.warn("Fill the Field")
+    if (!email && !phoneNumber) {
+      emailRef.current?.focus();
+      console.log("Invalid input");
       return;
     }
-    if(!password){
-      console.warn("Fill the Field")
+
+    if (!password) {
+      passwordRef.current?.focus();
       return;
     }
+
     login({
-      email: email || undefined,
-      phoneNo: phoneNumber || undefined,
-      password:password,
-      role:role,
+      ...(phoneNumber ? { phoneNo: phoneNumber } : {}),
+      ...(email ? { email } : {}),
+      password,
+      role,
     });
+  };
+
+
+
+  const handleChange = (text: string) => {
+      setInput(text);
+
+    setEmail("");
+    setPhoneNumber("");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{7,15}$/;
+
+    if (emailRegex.test(text)) {
+      setEmail(text);
+    } else if (phoneRegex.test(text)) {
+      setPhoneNumber(text);
+    }
   };
 
   return (
@@ -84,11 +109,13 @@ export default function LoginScreen() {
 
         <LabeledInput
           label="Phone number or email"
-          value={email}
-          onChangeText={setEmail}
+          value={input}
+          onChangeText={handleChange}
           placeholder="Enter your phone number or email"
+          inputRef={emailRef}
           onNext={() => { passwordRef.current?.focus() }}
           containerStyle={{ position: "static", top: 382 }}
+          keyboardType="email-address"
         />
         <LabeledInput
           label="Password"
@@ -102,7 +129,7 @@ export default function LoginScreen() {
         />
 
         <ContinueButton
-          title="Sign Up"
+          title="Sign In"
           gradient
           onPress={HandleLogin}
           containerStyle={{ top: 601, position: "static" }}
@@ -111,7 +138,7 @@ export default function LoginScreen() {
 
         <TouchableOpacity
           style={styles.forgotContainer}
-          onPress={() => { router.replace("/forgotPassword") }}
+          onPress={() => { router.push("/forgotPassword") }}
         >
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
@@ -151,12 +178,10 @@ const styles = StyleSheet.create({
 
   },
   logo: {
-    // width: 390,
     height: 218
   },
   title: {
     height: 58,
-    // width: "auto",
     position: "static",
     paddingTop: 20,
     paddingBottom: 8,
@@ -164,7 +189,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   titleText: {
-    // width: "auto",
     height: 30,
     lineHeight: 30,
     letterSpacing: 0,
@@ -175,14 +199,12 @@ const styles = StyleSheet.create({
 
   },
   label: {
-    // width: "auto",
     height: 47,
     position: "static",
     padding: 16,
     paddingBottom: 8
   },
   labelText: {
-    // width: "auto",
     height: 23,
     fontSize: 18,
     lineHeight: 23,
@@ -190,7 +212,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   roleContainer: {
-    // width: "auto",
     height: 56,
     top: 337,
     left: 1,
@@ -221,10 +242,7 @@ const styles = StyleSheet.create({
   },
 
   forgotContainer: {
-    // width: 140,
-    // overflow: "hidden",
     height: 37,
-    // top: 656,
     position: "static",
     left: 1,
     paddingHorizontal: 12,
@@ -232,7 +250,6 @@ const styles = StyleSheet.create({
     paddingBottom: 12
   },
   forgotPassword: {
-    // width: 358,
     height: 21,
     fontWeight: "400",
     fontSize: 14,
@@ -241,13 +258,11 @@ const styles = StyleSheet.create({
     color: "#66578F",
   },
   signupContainer: {
-    // width: "auto",
     height: 57,
     top: 787,
     position: "static",
   },
   signupTextContainer: {
-    // width: 390,
     height: 37,
     paddingHorizontal: 16,
     paddingTop: 4,
@@ -255,7 +270,6 @@ const styles = StyleSheet.create({
   },
   signupText: {
     textAlign: "center",
-    // width: 358,
     height: 21,
     fontWeight: "400",
     fontSize: 14,
@@ -273,7 +287,6 @@ const styles = StyleSheet.create({
     color: "#66578F"
   },
   blankContainer: {
-    // width: 390,
     height: 40,
     marginBottom: 50,
   }

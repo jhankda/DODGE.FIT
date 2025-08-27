@@ -10,20 +10,31 @@ import HeaderBar from "../../components/HeaderBar";
 import ContinueButton from "../../components/WideButton";
 import KeyboardWrapper from "../../components/FormScreen";
 import { StatusBar } from "expo-status-bar";
+import { useResetPass } from "@hooks/useSignIn";
+
 
 const router = useRouter()
 
 export default function ResetPassword() {
-
   const [newPassword, setNewPassword] = useState<string>()
   const [confirmedPassword, setConfirmedPassword] = useState<string>()
-
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false)
   const [showConfirmedPassword, setShowConfirmedPassword] = useState<boolean>(false)
-
   const confirmedPasswordRef = useRef<TextInput>(null)
-
   const allowedRegex = /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>_\-\s]*$/;
+  const { mutate: resetPass, isPending, error } = useResetPass();
+
+
+  const handleResetPass = () => {
+    if (!newPassword || newPassword !== confirmedPassword) {
+      confirmedPasswordRef.current?.focus();
+      return;
+    }
+    resetPass({
+      newPassword:newPassword,
+    })
+
+  }
 
   const handlePassChange = (
     text: string,
@@ -33,10 +44,12 @@ export default function ResetPassword() {
     setState(cleanText);
   };
 
-  const rules = (text:string)=>{
-    return (<View style={{ height: 37, paddingHorizontal: 16, paddingBottom: 12, paddingTop: 4 }}>
-            <Text style={{ height: 21, fontWeight: "400", fontSize: 14, lineHeight: 21 }}>{text}</Text>
-          </View>)
+  const rules = (text: string) => {
+    return (
+      <View style={{ height: 37, paddingHorizontal: 16, paddingBottom: 12, paddingTop: 4 }}>
+        <Text style={{ height: 21, fontWeight: "400", fontSize: 14, lineHeight: 21 }}>{text}</Text>
+      </View>
+    )
   }
   return (
     <KeyboardWrapper>
@@ -122,14 +135,15 @@ export default function ResetPassword() {
               ></View>}
             </TouchableOpacity>
           </View>
-            {rules("• At least 8 characters")}
-            {rules("• One uppercase & number")}
-            {rules("• One special character")}
+          {rules("• At least 8 characters")}
+          {rules("• One uppercase & number")}
+          {rules("• One special character")}
         </View>
 
         <ContinueButton
           title="Reset Password"
           gradient
+          onPress={handleResetPass}
         />
 
 

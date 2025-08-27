@@ -8,7 +8,6 @@ import LabeledInput from "../../components/labeledInput";
 import HeaderBar from "../../components/HeaderBar";
 import ContinueButton from "../../components/WideButton";
 import KeyboardWrapper from "../../components/FormScreen";
-import { StatusBar } from "expo-status-bar";
 
 
 
@@ -36,7 +35,6 @@ export default function signUpScreen() {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        <StatusBar style="auto" />
 
         <HeaderBar
           title="Create Account"
