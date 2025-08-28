@@ -8,55 +8,82 @@ import HeaderBar from "@components/HeaderBar";
 import ArrowLeft from "@assets/icons/arrowLeft.svg";
 import OtpInput from "@components/OtpInput";
 import ResendTimer from "@components/resendTimer";
-import { useVerify, useforgotPass } from "@hooks/useSignIn";
+import { useVerify, useforgotPass, useSignUp } from "@hooks/useSignIn";
 
 
 const router = useRouter()
 
+type SignupOtpPayload = {
+  email: string;
+  phoneNumber: string;
+  OTP: string;
+  fullName: string;
+  password: string;
+  termsAgreed: boolean;
+  role: string;
+};
+
+type ForgotOtpPayload = {
+  email?: string;
+  phoneNo?: string;
+  OTP: string;
+};
+
+type Flow = "signup" | "forgot";
 
 
 
 
 export default function verifyOTP() {
-  const params = useLocalSearchParams<{ email?: string; phoneNo?: string; nextPath: string }>();
   const [otp, setOTP] = useState<string>()
   const { mutate: verifyOtp, isPending, error } = useVerify();
-  const { mutate: forgotPass, isPending: isLoading, error: iserror = error } = useforgotPass();
+  const { mutate: forgotResend, isPending: isLoading1, error: iserror1 = error } = useforgotPass();
+  const { mutate: signUpResend, isPending: isLoading2, error: iserror2 = error } = useforgotPass();
 
+  const { data: datastring, flow, nextPath } = useLocalSearchParams<{ data: string; nextPath: string; flow: string }>();
+
+  const data = JSON.parse(datastring)
+  console.log("DATA", data)
+
+  const onApiSuccess = ()=>{
+    router.push(nextPath)
+  }
 
   const handleVerify = () => {
     if (!otp) return;
-    console.log("params",params.email,params.phoneNo)
-
-    verifyOtp(
-      {
-        ...(params.email ? { email: params.email } : {}),
-        ...(params.phoneNo ? { phoneNo: params.phoneNo } : {}),
+    if (flow === "signUp") {
+      verifyOtp({
         OTP: otp,
-      }, {
-      onSuccess: () => {
-        router.push(params.nextPath)
-      }
+        ...data
+      } as SignupOtpPayload,{
+        onSuccess:onApiSuccess
+      });
+    } else if (flow === "resetPass") {
+      verifyOtp({
+        OTP: otp,
+        ...data
+      } as ForgotOtpPayload,{onSuccess:onApiSuccess});
     }
-    )
-  }
+  };
 
   const handleResend = () => {
-
-    console.log("Resend Initiated")
-    forgotPass({
-      ...(params.phoneNo ? { phoneNo: params.phoneNo } : {}),
-      ...(params.email ? { email: params.email } : {}),
+    if (flow === "signUp") {
+      console.log("resend signUp")
+      signUpResend({ ...data });
+    } else if (flow === "resetPass") {
+      console.log("resend forgot")
+      forgotResend({ ...data });
     }
-    );
-    console.log("Resend Complete")
+  };
 
-  }
 
-  const maskedValue = params.email
-    ? params.email.replace(/(.{2})(.*)(@.*)/, (_, a, b, c) => `${a}${"*".repeat(b.length)}${c}`)
-    : params.phoneNo
-      ? params.phoneNo.replace(/.(?=.{2})/g, "*")
+
+
+
+  const maskedValue = data.email
+    ? data.email.replace(/(.{2})(.*)(@.*)/, (_, a, b, c) => `${a}${"*".repeat(b.length)}${c}`)
+    : data.phoneNo
+      ? data.phoneNo.replace(/.(?=.{2})/g, "*")
       : "";
 
   return (

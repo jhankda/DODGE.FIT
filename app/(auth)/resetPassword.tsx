@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import ArrowLeft from "../../assets/icons/arrowLeft.svg";
-import ScrollMenu from "../../assets/icons/ScrollMenu.svg";
+import ArrowLeft from "@assets/icons/arrowLeft.svg";
+import ScrollMenu from "@assets/icons/ScrollMenu.svg";
 import Eye from "../../assets/icons/Eye.svg"
-import DropdownInput from "../../components/dropDownMenu";
-import LabeledInput from "../../components/labeledInput";
-import HeaderBar from "../../components/HeaderBar";
-import ContinueButton from "../../components/WideButton";
-import KeyboardWrapper from "../../components/FormScreen";
+import DropdownInput from "@components/dropDownMenu";
+import LabeledInput from "@components/labeledInput";
+import HeaderBar from "@components/HeaderBar";
+import ContinueButton from "@components/WideButton";
+import KeyboardWrapper from "@components/FormScreen";
 import { StatusBar } from "expo-status-bar";
 import { useResetPass } from "@hooks/useSignIn";
 
@@ -21,17 +21,28 @@ export default function ResetPassword() {
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false)
   const [showConfirmedPassword, setShowConfirmedPassword] = useState<boolean>(false)
   const confirmedPasswordRef = useRef<TextInput>(null)
-  const allowedRegex = /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>_\-\s]*$/;
+  const [isInvalid,setIsInvalid] = useState<boolean | "testFail">(false)
   const { mutate: resetPass, isPending, error } = useResetPass();
 
 
   const handleResetPass = () => {
     if (!newPassword || newPassword !== confirmedPassword) {
       confirmedPasswordRef.current?.focus();
+      setIsInvalid(true)
       return;
     }
+    else if(newPassword===confirmedPassword){
+      setIsInvalid(false)
+    }
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if(!passwordRegex.test(confirmedPassword)){
+      setIsInvalid("testFail")
+      confirmedPasswordRef.current?.focus();
+      return;
+    }
+
     resetPass({
-      newPassword:newPassword,
+      newPassword: newPassword,
     })
 
   }
@@ -47,7 +58,9 @@ export default function ResetPassword() {
   const rules = (text: string) => {
     return (
       <View style={{ height: 37, paddingHorizontal: 16, paddingBottom: 12, paddingTop: 4 }}>
-        <Text style={{ height: 21, fontWeight: "400", fontSize: 14, lineHeight: 21 }}>{text}</Text>
+        <Text 
+        style={{ height: 21, fontWeight: "400", fontSize: 14, lineHeight: 21,...(isInvalid=="testFail"?{color:"red"}:{})}}
+        >{text}</Text>
       </View>
     )
   }
@@ -117,6 +130,8 @@ export default function ResetPassword() {
               secureTextEntry={!showConfirmedPassword}
               keyboardType="default"
               containerStyle={{ flex: 1, hieght: 70 }}
+              inputStyle={isInvalid==true ?{borderWidth:1,borderColor:"red"}:{}}
+
             />
             <TouchableOpacity
               style={{ alignItems: "flex-end", right: 10, top: 40, padding: 20, position: "absolute", alignContent: "center" }}
@@ -143,7 +158,7 @@ export default function ResetPassword() {
         <ContinueButton
           title="Reset Password"
           gradient
-          onPress={handleResetPass}
+          onPress={isPending ? undefined:handleResetPass}
         />
 
 
@@ -179,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0,
-    color: "#120F1A"
+    color: "#120F1A",
   },
   passwordContainer: {
     flexDirection: "row",

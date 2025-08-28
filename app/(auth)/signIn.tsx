@@ -8,9 +8,10 @@ import { useLogin } from "@hooks/useSignIn";
 
 export default function LoginScreen() {
   const [role, setRole] = useState<"User" | "Coach" | "Scanner Device">("User");
-  const [phoneNumber, setPhoneNumber] = useState<string>("")
-  const [email, setEmail] = useState<string>("")
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
 
   const [password, setPassword] = useState<string | undefined>()
@@ -26,11 +27,8 @@ export default function LoginScreen() {
 
 
   const handleSignUp = () => {
-    console.log("SignUp")
-    router.replace('/signUp')
+    router.push('/signUp')
   }
-
-
 
   const HandleLogin = () => {
     if (!email && !phoneNumber) {
@@ -52,10 +50,8 @@ export default function LoginScreen() {
     });
   };
 
-
-
   const handleChange = (text: string) => {
-      setInput(text);
+    setInput(text);
 
     setEmail("");
     setPhoneNumber("");
@@ -68,7 +64,10 @@ export default function LoginScreen() {
     } else if (phoneRegex.test(text)) {
       setPhoneNumber(text);
     }
+
   };
+
+
 
   return (
     <KeyboardWrapper>
@@ -138,7 +137,9 @@ export default function LoginScreen() {
 
         <TouchableOpacity
           style={styles.forgotContainer}
-          onPress={() => { router.push("/forgotPassword") }}
+          onPress={() => {
+            router.push("/forgotPassword")
+          }}
         >
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>

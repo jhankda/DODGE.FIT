@@ -8,6 +8,7 @@ import LabeledInput from "../../components/labeledInput";
 import HeaderBar from "../../components/HeaderBar";
 import ContinueButton from "../../components/WideButton";
 import KeyboardWrapper from "../../components/FormScreen";
+import { useSignUp } from "@hooks/useSignIn";
 
 
 
@@ -15,19 +16,63 @@ import KeyboardWrapper from "../../components/FormScreen";
 export default function signUpScreen() {
 
   const emailRef = useRef<TextInput>(null)
+  const fullNameRef = useRef<TextInput>(null)
   const phoneNumberRef = useRef<TextInput>(null)
   const passwordRef = useRef<TextInput>(null)
   const confirmPasswordRef = useRef<TextInput>(null)
+  const termsRef = useRef<View>(null)
 
+  const [role, setRole] = useState<string>("")
+  const [fullName, setFullName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
+  const [phoneNumber, setPhoneNumber] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [confirmPassword, setConfirmPassword] = useState<string>("")
+  const [termsAgreed, setTermsAgreed] = useState<boolean>(false)
+  const { mutate: signUp, isPending, error } = useSignUp();
 
-  const [fullName, setFullName] = useState<string>()
-  const [email, setEmail] = useState<string>()
-  const [phoneNumber, setPhoneNumber] = useState<string>()
-  const [password, setPassword] = useState<string>()
-  const [confirmPassword, setConfirmPassword] = useState<string>()
-  const [termsAgreed, setTermsAgreed] = useState<Boolean>(false)
 
   const router = useRouter()
+
+  const HandleSignup = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{7,15}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+
+    if (!role) return console.warn('Fill All the Fields');
+    if (!fullName) return fullNameRef.current?.focus();
+    if (!email || !emailRegex.test(email)) return emailRef.current?.focus();
+    if (!phoneNumber || !phoneRegex.test(phoneNumber)) return phoneNumberRef.current?.focus();
+    if (!password || !passwordRegex.test(password)) return passwordRef.current?.focus();
+    if (!confirmPassword || !passwordRegex.test(password)) return confirmPasswordRef.current?.focus();
+    if (password !== confirmPassword) return confirmPasswordRef.current?.focus()
+    if (!termsAgreed) return termsRef.current?.focus();
+
+
+
+    signUp(
+      {
+        email,
+        phoneNumber,
+        password,
+        fullName,
+        termsAgreed,
+      }, {
+      onSuccess: () => {
+        router.push({
+          pathname: '/verifyOTP',
+          params: {
+            nextPath: "/tabs/userDashboard",
+            flow: "signUp",
+            data: JSON.stringify({ email, phoneNumber, fullName, password, role, termsAgreed })
+          }
+        })
+      }
+    }
+    )
+  }
+
   return (
 
     <KeyboardWrapper>
@@ -47,10 +92,11 @@ export default function signUpScreen() {
         </View>
 
         <DropdownInput
+
           options={["Coach", "User", "Scanner Device"]}
           placeholder="Select - User/Coach/Admin"
           icon={<ScrollMenu height={26} width={13} right={29} bottom={8} fill="#66578F" alignSelf={"flex-end"} />}
-          onSelect={(value) => console.log("Selected:", value)}
+          onSelect={(value) => setRole(value)}
 
 
         />
@@ -59,6 +105,7 @@ export default function signUpScreen() {
           value={fullName}
           onChangeText={setFullName}
           placeholder="Enter your Full Name"
+          inputRef={fullNameRef}
           onNext={() => { emailRef.current?.focus() }}
         />
         <LabeledInput
@@ -96,7 +143,7 @@ export default function signUpScreen() {
           onSubmit={() => { }}
         />
 
-        <View style={styles.checkListContainer}>
+        <View ref={termsRef} style={styles.checkListContainer}>
           <View style={styles.checkList}>
             <TouchableOpacity
               style={styles.checkBox}
@@ -116,7 +163,7 @@ export default function signUpScreen() {
         <ContinueButton
           title="Signup"
           gradient
-          onPress={()=>router.replace('/verifyOTP')}
+          onPress={isPending ? undefined : HandleSignup}
         />
       </ScrollView>
     </KeyboardWrapper>

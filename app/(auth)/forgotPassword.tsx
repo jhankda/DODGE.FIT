@@ -39,9 +39,10 @@ export default function forgotPassword() {
         router.push({
           pathname: "/verifyOTP",
           params: {
-            ...(phoneNumber ? { phoneNo: phoneNumber } : {}),
-            ...(email ? { email } : {}),
-            nextPath:"/resetPassword"
+            flow:"resetPass",
+            nextPath:"/resetPassword",
+            data: JSON.stringify({...(phoneNumber ? { phoneNumber: phoneNumber } : {}),
+            ...(email ? { email } : {}),})
           }
         })
 

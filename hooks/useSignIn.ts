@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { loginApi, LoginPayload, forgotPassApi, ForgotPassPayload, verifyPayload, verifyAPI, resetPassPayload, resetPassAPI } from "@api/signIn";
+import { loginApi, LoginPayload, forgotPassApi, ForgotPassPayload, verifyPayload, verifyAPI, resetPassPayload, resetPassAPI, signUpPayload, signUpAPI } from "@api/signIn";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
 
@@ -25,7 +25,6 @@ export function useLogin() {
 
 
 export function useforgotPass() {
-  const router = useRouter();
 
   return useMutation({
     mutationFn: (payload: ForgotPassPayload) => forgotPassApi(payload),
@@ -73,3 +72,17 @@ export function useResetPass() {
     },
   });
 }
+
+export function useSignUp() {
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: (payload: signUpPayload) => signUpAPI(payload),
+    onSuccess: async (data) => {
+      await SecureStore.setItemAsync("signUp_token",data.pass_regenrate_token)
+    },
+    onError: (error: any) => {
+      console.error("Login failed:", error.message);
+    },
+  });
+};
