@@ -1,31 +1,29 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "jsx": "react-native",
+    "moduleResolution": "bundler",
+    "customConditions": ["react-native"],
     "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "./components/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@screens/*": [
-        "app/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@api/*": [
-        "api/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@(user))/*": [
-        "app/(user)/*"
-      ],
-
+      "@components/*": ["./components/*"],
+      "@assets/*": ["assets/*"],
+      "@screens/*": ["app/*"],
+      "@utils/*": ["utils/*"],
+      "@api/*": ["api/*"],
+      "@hooks/*": ["hooks/*"],
+      "@(user)/*": ["app/(user)/*"]
     }
   }
 }
