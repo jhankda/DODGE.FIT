@@ -13,6 +13,7 @@ import PersonIcon from "@assets/icons/PersonIcon.svg"
 import CalenderIcon from "@assets/icons/CalenderIcon.svg"
 import DunbellIcon from "@assets/icons/DunbellIcon.svg"
 import PlotIcon from "@assets/icons/PlotIcon.svg"
+import ItemList from "@components/ItemList";
 
 import { StatusBar } from "expo-status-bar";
 
@@ -32,9 +33,8 @@ export default function UserDashboard() {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
 
   return (
-      <ScrollView
-        contentContainerStyle={styles.container}
-        keyboardShouldPersistTaps="handled"
+      <View
+       style={styles.container}
       >
         <HeaderBar
           title="My Classes"
@@ -73,11 +73,11 @@ export default function UserDashboard() {
             </TouchableOpacity>
           </View>
 
-          {activeTab === "upcoming" ? <UpcomingPage /> : <PastPage />}
+          {activeTab === "upcoming" ? <ItemList filter="upcoming" /> : <ItemList filter="past" />}
         </View>
 
 
-      </ScrollView>
+      </View>
   )
 }
 const styles = StyleSheet.create({

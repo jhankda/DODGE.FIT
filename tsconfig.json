@@ -23,6 +23,7 @@
       "@utils/*": ["utils/*"],
       "@api/*": ["api/*"],
       "@hooks/*": ["hooks/*"],
+      "@schemas/*": ["schemas/*"],
       "@(user)/*": ["app/(user)/*"]
     }
   }
