@@ -21,7 +21,7 @@ export async function fetchClassApi(AUTH_TOKEN:string|null) {
 
   return data;
 }
-export async function fetchClassDetailsApi(AUTH_TOKEN:string|null) {
+export async function fetchClassDetailsApi(AUTH_TOKEN:string|null,id:string) {
   console.log("fetchclassDetailsApi")
   const res = await fetch("https://my.api.mockaroo.com/fetch_class_list.json", {
     method: "GET",

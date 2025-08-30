@@ -21,7 +21,7 @@ export function useFetchClassList() {
     refetchOnReconnect:false
   });
 };
-export function useFetchClassDetailsList() {
+export function useFetchClassDetailsList(id:string) {
   console.log("fetch")
   return useQuery<ClassDetail, Error>({
     queryKey: ["classDetail"],
@@ -31,7 +31,7 @@ export function useFetchClassDetailsList() {
 
       if (!token) throw new Error("No token found");
 
-      return fetchClassDetailsApi(token);
+      return fetchClassDetailsApi(token,id);
     },
     refetchOnMount:false,
     refetchOnWindowFocus:false,

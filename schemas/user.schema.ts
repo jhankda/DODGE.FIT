@@ -4,10 +4,10 @@ export type ClassItem = {
   };
   name: string;
   time: string; // e.g., "6:30 PM"
-  date: string; // ISO string, e.g., "2024-12-07T18:38:45Z"
+  startDate: string; // ISO string, e.g., "2024-12-07T18:38:45Z"
+  endDate:string;
   icon?: string; // e.g., "yoga"
   coach?: string; // e.g., "Emmaline"
-  duration?: number; // in hours
   image?: string; // e.g., "yoga"
 };
 export type ClassDetail = {
@@ -16,12 +16,12 @@ export type ClassDetail = {
   };
   name: string;
   slug:string;
-  time?: string; // e.g., "6:30 PM"
-  startDate: string; // ISO string, e.g., "2024-12-07T18:38:45Z"
-  endDate: string; // ISO string, e.g., "2024-12-07T18:38:45Z"
-  icon?: string; // e.g., "yoga"
-  coach: string; // e.g., "Emmaline"
-  image: string; // e.g., "yoga",
+  time: string;
+  startDate: string; 
+  endDate: string; 
+  icon?: string; 
+  coach: string;
+  image?: string; 
   loaction:string;
   attended:boolean;
   notes:string;
