@@ -9,7 +9,7 @@ interface Class {
   id: string;
   name: string;
   time: string;
-  date: string; 
+  date: string;
   status: "upcoming" | "past";
   attended: boolean | "null";
   icon: string;
@@ -17,14 +17,24 @@ interface Class {
 }
 
 interface ClassListProps {
-  date: Date; 
-  variant?: "status" | "coach"; 
+  date: Date;
+  variant?: "status" | "coach";
 }
 
 const fetchClasses = async (date: Date): Promise<Class[]> => {
   return [
     {
       id: "1",
+      name: "Strength Training",
+      time: "10:00 AM",
+      date: date.toISOString(),
+      status: "upcoming",
+      attended: false,
+      icon: "boxing",
+      coach: "Alex",
+    },
+    {
+      id: "10",
       name: "Strength Training",
       time: "10:00 AM",
       date: date.toISOString(),
@@ -124,8 +134,8 @@ export default function ClassList({ date, variant = "status" }: ClassListProps) 
 
     return (
       <View style={styles.row}>
-        <View style={{height:48,width:48,borderRadius:8,backgroundColor:"#F2F2F5",justifyContent:"center"}}>
-        {LeftIcon ? <LeftIcon width={32} height={32} alignContent={"center"} alignSelf={"center"} /> : <View style={{ width: 32, height: 32 }} />}
+        <View style={{ height: 48, width: 48, borderRadius: 8, backgroundColor: "#F2F2F5", justifyContent: "center" }}>
+          {LeftIcon ? <LeftIcon width={32} height={32} alignContent={"center"} alignSelf={"center"} /> : <View style={{ width: 32, height: 32 }} />}
         </View>
         <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.className}>{item.name}</Text>
@@ -143,7 +153,6 @@ export default function ClassList({ date, variant = "status" }: ClassListProps) 
 
   return (
     <SectionList
-      
       sections={sections}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
@@ -151,6 +160,9 @@ export default function ClassList({ date, variant = "status" }: ClassListProps) 
         <Text style={styles.sectionTitle}>{title}</Text>
       )}
       showsVerticalScrollIndicator={false}
+      style={{ flex: 1 }}   // 👈 force it to fill parent View
+      contentContainerStyle={{ paddingBottom: 20 }} // extra space at bottom
+
     />
   );
 }
@@ -158,7 +170,7 @@ export default function ClassList({ date, variant = "status" }: ClassListProps) 
 const styles = StyleSheet.create({
   sectionTitle: {
     height: 40,
-    paddingHorizontal:16,
+    paddingHorizontal: 16,
     paddingVertical: 8,
     fontWeight: "700",
     fontSize: 18,

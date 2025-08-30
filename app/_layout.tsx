@@ -1,12 +1,15 @@
-import React from 'react';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { Stack, SplashScreen } from 'expo-router';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
-
+import { useFonts } from 'expo-font';
 
 export default function RootLayout() {
   const [queryClient] = useState(() => new QueryClient());
+
+  const [loaded] = useFonts({
+    "SpaceGrotesk": require("./../assets/fonts/SpaceGrotesk.ttf"),
+  })
+  if(loaded){null}
 
   return (
     <QueryClientProvider client={queryClient}>

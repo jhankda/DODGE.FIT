@@ -16,7 +16,7 @@ import PlotIcon from "../../../assets/icons/PlotIcon.svg"
 
 import { StatusBar } from "expo-status-bar";
 
-export default function UserDashboard() {
+export default function AddExercise() {
   return (
     <KeyboardWrapper>
       <ScrollView
@@ -27,6 +27,11 @@ export default function UserDashboard() {
       title="Dodge.fit"
       RightIcon={<PersonIcon width={24} height={24} fill={"#120F1A"} />}
       />
+
+      
+
+      <ContinueButton
+      title=''/>
       
 
       </ScrollView>

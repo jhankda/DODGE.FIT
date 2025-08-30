@@ -5,11 +5,11 @@ import { LinearGradient } from "expo-linear-gradient";
 interface ContinueButtonProps {
   title: string;
   onPress?: () => void;
-  containerStyle?: ViewStyle;      
-  buttonStyle?: ViewStyle;       
-  textStyle?: TextStyle;          
-  gradient?: boolean;             
-  gradientColors?: string[];     
+  containerStyle?: ViewStyle;
+  buttonStyle?: ViewStyle;
+  textStyle?: TextStyle;
+  gradient?: boolean;
+  gradientColors?: string[];
 }
 
 export default function ContinueButton({
@@ -19,7 +19,7 @@ export default function ContinueButton({
   buttonStyle,
   textStyle,
   gradient = false,
-  gradientColors = ["#8C66E3", "#BA9CF7"], 
+  gradientColors = ["#8C66E3", "#BA9CF7"],
 }: ContinueButtonProps) {
   return (
     <View style={[styles.buttonContainer, containerStyle]}>
@@ -27,8 +27,8 @@ export default function ContinueButton({
         {gradient ? (
           <LinearGradient
             colors={["#8C66E3", "#2900F3"]}
-            start={{x:0,y:0}}
-            end={{x:2, y:2}}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 2, y: 2 }}
             style={[styles.continueButton, buttonStyle]}
           >
             <View style={styles.continueContainer}>
@@ -54,14 +54,11 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     justifyContent: "center",
-    // flexDirection: "row",
     width: "auto",
     height: 48,
-    // minWidth: 112,
     maxWidth: "auto",
     borderRadius: 24,
     paddingHorizontal: 20,
-    backgroundColor: "#FAFAFA",
   },
   continueContainer: {
     alignSelf: "center",

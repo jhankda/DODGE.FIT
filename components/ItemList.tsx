@@ -13,6 +13,7 @@ import { filterByStatus, formatClassTime } from "@utils/filterByStatus";
 import { ClassItem } from '@schemas/user.schema';
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import CalendarIcon from "@assets/icons/CalenderIcon"
 
 type Props = {
   filter: "upcoming" | "present" | "past";
@@ -21,10 +22,102 @@ type Props = {
 
 
 
+type CardProps = {
+  item: ClassItem;
+  filter: "upcoming" | "present" | "past";
+};
+
+const UpcomingCard: React.FC<CardProps> = ({ item, filter }) => {
+  const router = useRouter();
+
+  const handleViewDetails = () => {
+    router.push({
+      pathname: "../secondary/classDetails",
+      params: { id: item.id.$oid },
+    });
+  };
+
+  return (
+    <View className="bg-custom-off-white rounded-xl mb-8 flex-row justify-between items-start">
+      <View className="flex-col gap-y-4 flex-1 pr-4">
+        <View className="flex-col gap-y-1">
+          <Text className="text-sm text-custom-text-light font-normal leading-[21px]">
+            Enrolled
+          </Text>
+          <Text className="text-base text-custom-text-dark font-bold leading-[20px]">
+            {item.name}
+          </Text>
+          <Text className="text-sm text-custom-text-light font-normal leading-[21px]">
+            {formatClassTime(item.startDate, item.endDate, filter)}
+          </Text>
+        </View>
+
+        <TouchableOpacity className="self-start" onPress={handleViewDetails}>
+          <LinearGradient
+            colors={["#8C66E3", "#2900F3"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 2, y: 2 }}
+            className="h-8 px-5 rounded-full flex-row items-center justify-center"
+          >
+            <Text className="text-sm font-medium text-custom-off-white mr-2 leading-[21px]">
+              View Details
+            </Text>
+            <Text className="text-custom-off-white">→</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+
+      <Image
+        source={getClassImage(item.image)}
+        className="w-[130px] h-[139px] rounded-xl"
+      />
+    </View>
+  );
+};
+
+const PastClassCard: React.FC<CardProps> = ({ item, filter }) => {
+
+  return (
+    <View>
+
+      <View className="flex-row h-56px items-center">
+        <View className="flex justify-center mr-2 items-center w-10 h-10 bg-custom-icon-bg p-0">
+          <View className="w-6 h-6 relative">
+            <CalendarIcon className="absolute w-6 h-6 left-0 top-0 color-custom-blue" />
+            <View className="absolute w-[18px] h-[20px] left-0 top-0 font-normal flex flex-col items-start p-0" />
+          </View>
+        </View>
+
+        <Text className='font-sans  text-base leading-6 tracking-normal'>
+          {formatClassTime(item.startDate, item.endDate, 'longDate')}</Text>
+      </View>
+      <View className="flex-row items-start gap-x-4 py-4">
+        <View className="flex-1">
+          <Text className="text-sm font-normal text-[#69598C]">Absent</Text>
+          <Text className="text-base font-bold text-[#120F1A] mt-1">{item.name}</Text>
+          <Text className="text-sm font-normal text-[#69598C] mt-1">
+            {formatClassTime(item.startDate, item.endDate, filter)} · Coach {item.coach}
+          </Text>
+        </View>
+        <View className="w-32 aspect-[130/70]">
+          <Image source={getClassImage(item.image)} className="w-full h-full rounded-lg" resizeMode="cover" />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+
+const handleViewDetails = (id: string) => {
+  const router = useRouter();
+  router.push({
+    pathname: "../secondary/classDetails",
+    params: { id: id }
+  });
+};
+
 const ItemList = ({ filter }: Props) => {
   const { data, isLoading, error } = useFetchClassList();
-  
-  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -41,59 +134,30 @@ const ItemList = ({ filter }: Props) => {
       </View>
     );
   }
-  console.log("dATA",data)
+  console.log("dATA", data)
   const filteredData = data ? filterByStatus(data, filter) : [];
 
-  console.log("FD",filteredData)
-
-  const handleViewDetails = (id: string) => { 
-    router.push({
-      pathname: "../secondary/classDetails",
-      params: { id: id } 
-    });
+  console.log("FD", filteredData)
+  const renderListItem = ({ item }: { item: ClassItem }) => {
+    if (filter === "past") {
+      return <PastClassCard item={item} filter={filter} />;
+    }
+    return <UpcomingCard item={item} filter={filter} />;
   };
 
+
+
   return (
+    <View className="pb-20">
+
     <FlatList
       data={filteredData}
       keyExtractor={(item) => item.id.$oid}
-      renderItem={({ item }: { item: ClassItem }) => (
-        <View className="bg-custom-off-white rounded-xl mb-8 flex-row justify-between items-start">
-          
-          <View className="flex-col gap-y-4 flex-1 pr-4">
-            
-            <View className="flex-col gap-y-1">
-              <Text className="text-sm text-custom-text-light font-normal leading-[21px]">Enrolled</Text>
-              <Text className="text-base text-custom-text-dark font-bold leading-[20px]">{item.name}</Text>
-              <Text className="text-sm text-custom-text-light font-normal leading-[21px]">
-                {formatClassTime(item.startDate, item.endDate)}
-              </Text>
-            </View>
-
-            <TouchableOpacity className="self-start"
-              onPress={() => { handleViewDetails(item.id.$oid) }}
-            >
-              <LinearGradient
-                colors={['#8C66E3', '#2900F3']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 2, y: 2 }}
-                className="h-8 px-5 rounded-full flex-row items-center justify-center"
-              >
-                <Text className="text-sm font-medium text-custom-off-white mr-2 leading-[21px]">View Details</Text>
-                <Text className="text-custom-off-white">→</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
-
-          <Image
-            source={getClassImage(item.image)}
-            className="w-[130px] h-[139px] rounded-xl"
-          />
-        </View>
-      )}
+      renderItem={renderListItem}
       contentContainerStyle={{ padding: 16 }}
       showsVerticalScrollIndicator={false}
-    />
+      />
+      </View>
   );
 };
 

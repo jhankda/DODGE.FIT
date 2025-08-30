@@ -3,12 +3,13 @@ export type ClassItem = {
     $oid: string;
   };
   name: string;
-  time: string; // e.g., "6:30 PM"
-  startDate: string; // ISO string, e.g., "2024-12-07T18:38:45Z"
+  time: string; 
+  startDate: string; 
   endDate:string;
-  icon?: string; // e.g., "yoga"
-  coach?: string; // e.g., "Emmaline"
-  image?: string; // e.g., "yoga"
+  icon?: string;
+  coach?: string; 
+  image?: string; 
+  attended?:boolean
 };
 export type ClassDetail = {
   id: {
@@ -29,3 +30,21 @@ export type ClassDetail = {
   workoutLog:string;
   
 };
+
+export type Exercise = {
+  id: string;         
+  name: string;       
+  sets: number;       
+  reps: number;       
+  weight?: number;    
+  time?: string;      
+};
+
+export type MuscleGroup = {
+  id: string;         // unique id for section
+  name: string;       // e.g. "Arms", "Legs"
+  exercises: Exercise[];
+};
+
+export type WorkoutPlan = MuscleGroup[];
+
