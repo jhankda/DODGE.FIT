@@ -79,15 +79,13 @@ export default function AttendanceDetails() {
           <View>
 
           <SmallButton
-          
           title="Filter By Date"
-          onPress={undefined}/>
+          onPress={()=>{router.push('../secondary/dateRange')}}/>
 
           </View>
           <View>
 
           <SmallButton
-          
           title="june1-july,2025"
           gradient
           onPress={undefined}/>

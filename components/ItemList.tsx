@@ -61,6 +61,7 @@ const UpcomingCard: React.FC<CardProps> = ({ item, filter }) => {
           title='View Details'
           rightIcon={<ArrowLeft />}
           gradient
+          onPress={()=>router.push('../secondary/classDetails')}
         />
 
       </View>
@@ -79,9 +80,9 @@ const PastClassCard: React.FC<CardProps> = ({ item, filter }) => {
     <View>
 
       <View className="flex-row h-56px items-center">
-        <View className="flex justify-center mr-2 items-center w-10 h-10 bg-custom-icon-bg p-0">
-          <View className="w-6 h-6 relative">
-            <CalendarIcon className="absolute w-6 h-6 left-0 top-0 color-custom-blue" />
+        <View className="flex justify-center mr-2 rounded-lg items-center w-10 h-10 bg-custom-icon-bg p-0">
+          <View className="w-6 h-6 relative ">
+            <CalendarIcon className="absolute w-6 h-6 self-center color-custom-blue" />
             <View className="absolute w-[18px] h-[20px] left-0 top-0 font-normal flex flex-col items-start p-0" />
           </View>
         </View>
@@ -103,15 +104,6 @@ const PastClassCard: React.FC<CardProps> = ({ item, filter }) => {
       </View>
     </View>
   );
-};
-
-
-const handleViewDetails = (id: string) => {
-  const router = useRouter();
-  router.push({
-    pathname: "../secondary/classDetails",
-    params: { id: id }
-  });
 };
 
 const ItemList = ({ filter }: Props) => {

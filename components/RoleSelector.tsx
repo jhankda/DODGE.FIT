@@ -1,4 +1,3 @@
-// components/RoleSelector.tsx
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
@@ -18,9 +17,7 @@ export default function RoleSelector<T extends string>({
       {roles.map((role) => (
         <TouchableOpacity
           key={role}
-          className={`h-8 px-4 rounded-xl justify-center items-center ${
-            selectedRole === role ? "bg-purple-200" : "bg-custom-button-bg"
-          }`}
+          className={`h-8 px-4 rounded-xl justify-center items-center ${selectedRole === role ? "bg-purple-200" : "bg-custom-button-bg"}`}
           onPress={() => onSelect(role)}
         >
           <Text className="font-sans text-sm font-medium leading-[21px] text-[#120F1A]">{role}</Text>

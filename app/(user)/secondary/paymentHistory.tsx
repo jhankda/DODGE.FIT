@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import ArrowLeft from "@assets/icons/arrowLeft.svg";
@@ -23,6 +23,13 @@ const role  = ["Last 30 Days","June 2025","Custom Range"];
 export default function PaymentHistory() {
   const [selectedFilter,setSelectedFilter] = useState<string>("Last 30 Days")
   const router = useRouter();
+
+  useEffect(()=>{
+    if(selectedFilter=='Custom Range'){
+      router.push('./dateRange');
+      setSelectedFilter("Last 30 Days");
+    }
+  })
 
   const PaymentList = ()=>{
     return(

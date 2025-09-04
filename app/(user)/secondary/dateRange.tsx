@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter , useLocalSearchParams} from "expo-router";
 import ArrowLeft from "@assets/icons/arrowLeft.svg";
 import ScrollMenu from "@assets/icons/ScrollMenu.svg";
 import DropdownInput from "@components/dropDownMenu";
@@ -21,10 +21,16 @@ import { StatusBar } from "expo-status-bar";
 type FilterType = "1Week" | "July 2025" | "June 2025" | "Custom Range"
 const Filters: FilterType[] = ["1Week", "July 2025", "June 2025", "Custom Range"]
 
+type params = {
+  RoleList:string[],
+  RoleIcon:string[],
+  backPath:string
+}
 
 export default function DateRange() {
+  const parmas  = useLocalSearchParams<{RoleList:string[], backPath:string}>()
   const [selectedType, setSelectedType] = useState<"1Week" | "July 2025" | "June 2025" | "Custom Range">("1Week")
-  const router  = useRouter()
+  const router = useRouter()
   return (
     <KeyboardWrapper>
       <ScrollView
@@ -34,17 +40,22 @@ export default function DateRange() {
         <HeaderBar
           title="Date Range"
           LeftIcon={<ArrowLeft width={24} height={24} fill={"#120F1A"} />}
-          onLeftPress={()=>{if(router.canGoBack())router.back()}}
+          onLeftPress={() => { if (router.canGoBack()) router.back() }}
         />
 
-        <ClassCalendar notList  />
-        <ClassCalendar 
-        notList/>
-        <RoleSelector
-          roles={Filters}
-          selectedRole={selectedType}
-          onSelect={setSelectedType}
-        />
+        <ClassCalendar
+          notList />
+        <ClassCalendar
+          notList />
+
+        <View className="py-3">
+
+          <RoleSelector
+            roles={Filters}
+            selectedRole={selectedType}
+            onSelect={setSelectedType}
+          />
+        </View>
 
         <ContinueButton
           title="Apply Filter"
@@ -61,7 +72,7 @@ export default function DateRange() {
 }
 const styles = StyleSheet.create({
   container: {
-    height: 1674,
+
   }
 })
 

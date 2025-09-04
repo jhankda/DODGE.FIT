@@ -20,8 +20,7 @@ export default function ClassCalendar({notList=false,onPress}:calendarProps) {
   };
 
   return (
-    <View style={{ flex: 1,backgroundColor:"#ffffff", padding: 16 }}>
-      {/* Calendar stays fixed at top */}
+    <View style={[{backgroundColor:"#ffffff", padding: 16 },notList?{flex:0}:{flex:1}]}>
       <Calendar
         onDayPress={onPress?onPress:onDayPress}
         markedDates={{

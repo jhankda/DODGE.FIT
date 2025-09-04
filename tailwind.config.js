@@ -30,6 +30,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ["SpaceGrotesk"],
+        bold: ["SpaceGrotesk-Bold"],
+        medium: ["SpaceGrotesk-medium"],
+        light: ["SpaceGrotesk-light"],
+        normal: ["SpaceGrotesk-Regular"],
       },
     },
     

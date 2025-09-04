@@ -22,7 +22,6 @@ export default function  SmallButton  ({ title, leftIcon, rightIcon, onPress,gra
         <Text className={`text-sm font-medium ${gradient?'text-custom-off-white':'text-custom-blue'} mr-2 leading-[21px]`}>
           {title}
         </Text>
-        {/* <A> */}
         {rightIcon}
       </LinearGradient>
     </TouchableOpacity>

@@ -8,6 +8,11 @@ export default function RootLayout() {
 
   const [loaded] = useFonts({
     "SpaceGrotesk": require("./../assets/fonts/SpaceGrotesk.ttf"),
+    "SpaceGrotesk-Bold": require("./../assets/fonts/SpaceGrotesk-Bold.ttf"),
+    "SpaceGrotesk-Medium": require("./../assets/fonts/SpaceGrotesk-Medium.ttf"),
+    "SpaceGrotesk-Light": require("./../assets/fonts/SpaceGrotesk-Light.ttf"),
+    "SpaceGrotesk-Regular": require("./../assets/fonts/SpaceGrotesk-Regular.ttf"),
+    "SpaceGrotesk-SemiBold": require("./../assets/fonts/SpaceGrotesk-SemiBold.ttf"),
   })
   if(loaded){null}
 

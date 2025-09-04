@@ -1,12 +1,18 @@
 import React from 'react';
+import { Pressable } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useFonts } from 'expo-font';
-import HomeIcon from "../../../assets/icons/HomeIcon.svg"
-import PersonIcon from "../../../assets/icons/PersonIcon.svg"
-import CalenderIcon from "../../../assets/icons/CalenderIcon.svg"
-import DunbellIcon from "../../../assets/icons/DunbellIcon.svg"
-import PlotIcon from "../../../assets/icons/PlotIcon.svg"
 import KeyboardWrapper from "../../../components/FormScreen";
+import HomeIcon from "@assets/icons/HomeIcon.svg"
+import PersonIcon from "@assets/icons/PersonIcon.svg"
+import CalenderIcon from "@assets/icons/CalenderIcon.svg"
+import DunbellIcon from "@assets/icons/DunbellIcon.svg"
+import PlotIcon from "@assets/icons/PlotIcon.svg"
+import PlotActiveIcon from "@assets/icons/PlotActiveIcon.svg"
+import PersonActiveIcon from "@assets/icons/PersonActiveIcon.svg"
+import DunbellActiveIcon from "@assets/icons/DunbellActiveIcon.svg"
+import HomeInactiveIcon from "@assets/icons/HomeInactiveIcon.svg"
+import CalenderActiveIcon from "@assets/icons/CalenderActiveIcon.svg"
 
 export default function UserLayout() {
 
@@ -17,70 +23,95 @@ export default function UserLayout() {
       <Tabs
         screenOptions={{
           headerShown: false,
+          tabBarShowLabel: true,
           tabBarActiveTintColor: '#000',
-          tabBarInactiveTintColor: '#FAFAFA',
+          tabBarInactiveTintColor: '#000',
           tabBarStyle: {
-            elevation: 0,
-            shadowOpacity: 0,
-            height: 50,
-            borderTopWidth: 0.2,
+            paddingTop: 8,
+            paddingBottom: 12,
+            paddingHorizontal: 16,
+            height: 75,
+            borderTopWidth: 1,
             backgroundColor: '#FAFAFA',
             borderTopColor: '#FAFAFA',
-          }
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontFamily: 'SpaceGrotesk',
+            fontWeight: '500',
+            lineHeight: 18,
+            color: '#121217'
+          },
+          tabBarIconStyle: {
+            height: 24,
+            width: 24,
+          },
+          tabBarButton: (props) => (
+            <Pressable
+              onPress={props.onPress}
+              style={props.style}
+              android_ripple={null}
+            >
+              {props.children}
+            </Pressable>
+          ),
         }}
+
       >
         <Tabs.Screen
           name="userDashboard"
           options={{
             title: 'Home',
+            tabBarIcon: ({ focused, color, size }) => (
+              focused ? (<HomeIcon size={size} color={color} />) :
+                (<HomeInactiveIcon size={size} color={color} />)
+            ),
 
-            tabBarIcon: ({ color, size }) => (
-              <HomeIcon size={size} color={color} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="Profile"
-          options={{
-            title: 'Profile',
-            tabBarIcon: ({ color, size }) => (
-              <PersonIcon size={size} color={color} />
-            ),
           }}
         />
         <Tabs.Screen
           name="myClass"
           options={{
             title: 'Classes',
-            tabBarIcon: ({ color, size }) => (
-              <CalenderIcon size={size} color={color} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="workoutLogger"
-          options={{
-            title: 'Workout',
-            tabBarIcon: ({ color, size }) => (
-              <PlotIcon size={size} color={color} />
+            tabBarIcon: ({ focused, color, size }) => (
+              focused ? (<CalenderActiveIcon size={size} color={color} />) :
+                (<CalenderIcon size={size} color={color} />)
             ),
           }}
         />
         <Tabs.Screen
           name="progress"
           options={{
-            title: 'Progress',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 25
-            },
+            title: 'Workout',
             headerTintColor: '#ca02e5',
-            tabBarIcon: ({ color, size }) => (
-              <DunbellIcon size={size} color={color} />
+            tabBarIcon: ({ focused, color, size }) => (
+              focused ? (<DunbellActiveIcon size={size} color={color} />) :
+                (<DunbellIcon size={size} color={color} />)
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="workoutLogger"
+          options={{
+            title: 'Progress',
+            tabBarIcon: ({ focused, color, size }) => (
+              focused ? (<PlotActiveIcon size={size} color={color} />) :
+                (<PlotIcon size={size} color={color} />)
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="Profile"
+
+          options={{
+            title: 'Profile',
+            tabBarIcon: ({ focused, color, size }) => (
+              focused ? (<PersonActiveIcon size={size} color={color} />) :
+                (<PersonIcon size={size} color={color} />)
             ),
           }}
         />
       </Tabs>
-    </KeyboardWrapper>
+    </KeyboardWrapper >
   );
 }
