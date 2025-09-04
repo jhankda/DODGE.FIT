@@ -5,6 +5,7 @@ import ContinueButton from "@components/WideButton";
 import KeyboardWrapper from "@components/FormScreen";
 import LabeledInput from "@components/labeledInput";
 import { useLogin } from "@hooks/useSignIn";
+import RoleSelector from "@components/RoleSelector";
 
 export default function LoginScreen() {
   const [role, setRole] = useState<"User" | "Coach" | "Scanner Device">("User");
@@ -31,6 +32,7 @@ export default function LoginScreen() {
   }
 
   const HandleLogin = () => {
+    return router.replace('/tabs/userDashboard')
     if (!email && !phoneNumber) {
       emailRef.current?.focus();
       console.log("Invalid input");
@@ -91,20 +93,11 @@ export default function LoginScreen() {
           <Text style={styles.labelText}>Continue as</Text>
         </View>
 
-        <View style={styles.roleContainer}>
-          {roles.map((item) => (
-            <TouchableOpacity
-              key={item}
-              style={[
-                styles.roleButton,
-                role === item && styles.roleButtonActive
-              ]}
-              onPress={() => setRole(item)}
-            >
-              <Text style={styles.roleButtonText}>{item}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+       <RoleSelector
+        roles={roles}
+        selectedRole={role}
+        onSelect={setRole}
+      />
 
         <LabeledInput
           label="Phone number or email"

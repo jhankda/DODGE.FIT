@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchClassApi, fetchClassDetailsApi } from "@api/user";
+import { fetchClassApi, fetchClassDetailsApi, fetchUserProfile } from "@api/user";
 import * as SecureStore from "expo-secure-store";
 import {ClassDetail, ClassItem} from '@schemas/user.schema'
 
@@ -32,6 +32,25 @@ export function useFetchClassDetailsList(id:string) {
       if (!token) throw new Error("No token found");
 
       return fetchClassDetailsApi(token,id);
+    },
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
+    refetchOnReconnect:false
+  });
+};
+
+
+export function useFetchUserProfile() {
+  console.log("fetchProfile")
+  return useQuery<ClassDetail, Error>({
+    queryKey: ["Profile"],
+    queryFn: async () => {
+      // const token = await SecureStore.getItemAsync("AUTH_TOKEN");
+      const token="harsh"
+
+      if (!token) throw new Error("No token found");
+
+      return fetchUserProfile(token);
     },
     refetchOnMount:false,
     refetchOnWindowFocus:false,

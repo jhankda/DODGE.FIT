@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'custom-blue2':'#0D0D1C',
         'custom-blue': "#120F1A",
         'custom-text-dark': '#120F1A',
         'custom-icon-bg': '#EDE8F2',
@@ -22,11 +23,16 @@ module.exports = {
         'custom-purple-light': '#A881FF',
         'custom-off-white': '#FAFAFA',
         'custom-green':"#088745",
+        'custom-purple1':'#69598C',
+        'custom-border-gray':'#E5E8EB',
+        'custom-border-gray2':'#D9D4E3'
+
       },
       fontFamily: {
         sans: ["SpaceGrotesk"],
       },
     },
+    
   },
   plugins: [],
 };

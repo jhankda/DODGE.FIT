@@ -11,6 +11,7 @@ import {
 interface DropdownProps {
   options: string[];
   placeholder?: string;
+  label?:string;
   onSelect?: (value: string) => void;
   icon?: React.ReactNode;
   styleOverrides?: {
@@ -27,6 +28,7 @@ interface DropdownProps {
 export default function DropdownInput({
   options,
   placeholder = "Please choose an option",
+  label='Signing up as',
   onSelect,
   icon,
   styleOverrides = {},
@@ -44,8 +46,8 @@ export default function DropdownInput({
     <View style={[styles.signUpRoleContainer, styleOverrides.container]}>
       <View style={styles.signUpRole}>
         <View style={styles.signUpRoleTextContainer}>
-          <Text style={[styles.signUpRoleText, styleOverrides.label]}>
-            Signing up as
+          <Text style={[styles.signUpRoleText, styleOverrides.label]} className="font-sans" >
+            {label}
           </Text>
         </View>
         <View style={styles.signUpRoleInputContainer}>

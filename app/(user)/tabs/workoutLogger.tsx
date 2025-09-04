@@ -22,10 +22,12 @@ type ExerciseType = "All" | "Arms" | "Legs" | "Chest" | "Back"
 const exerciseTypes: ExerciseType[] = ["All", "Arms", "Legs", "Chest", "Back"]
 
 export default function WorkoutLogger() {
+  
   const [selectedType, setSelectedType] = useState<"All" | "Arms" | "Legs" | "Chest" | "Back">("All")
-
   const date = new Date().toISOString()
   const longDate = formatClassTime(date, date, 'longDate')
+
+  const router  = useRouter()
   return (
     <KeyboardWrapper>
       <ScrollView
@@ -34,6 +36,7 @@ export default function WorkoutLogger() {
       >
         <HeaderBar
           title="Workout Logger"
+        
         />
 
         <Text className="pt-1 px-4 pb-3 h-37 font-sans font-normal text-sm leading-[21px] text-center ">{longDate}</Text>
@@ -51,6 +54,7 @@ export default function WorkoutLogger() {
         <ContinueButton
           title="+ Add Exercise to Log"
           gradient
+          onPress={()=>{router.push('../secondary/addExercise')}}
           />
           </View>
 

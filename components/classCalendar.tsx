@@ -1,12 +1,16 @@
-// components/ClassCalendar.tsx
 import React, { useState } from "react";
 import { View } from "react-native";
 import { Calendar } from "react-native-calendars";
-import LeftIcon from '@assets/icons/leftIcon.svg'
-import RightIcon from '@assets/icons/rightIcon.svg'
+import LeftIcon from '@assets/icons/leftIcon.svg';
+import RightIcon from '@assets/icons/rightIcon.svg';
 import ClassList from "./classList";
 
-export default function ClassCalendar() {
+type calendarProps = {
+  notList?:boolean;
+  onPress?:()=>void
+}
+
+export default function ClassCalendar({notList=false,onPress}:calendarProps) {  
   const [sDate, setSDate] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<string>("");
 
@@ -19,7 +23,7 @@ export default function ClassCalendar() {
     <View style={{ flex: 1,backgroundColor:"#ffffff", padding: 16 }}>
       {/* Calendar stays fixed at top */}
       <Calendar
-        onDayPress={onDayPress}
+        onDayPress={onPress?onPress:onDayPress}
         markedDates={{
           [selectedDate]: {
             selected: true,
@@ -51,9 +55,9 @@ export default function ClassCalendar() {
       />
 
       {/* Make only the list scrollable */}
-      <View style={{ flex: 1 }}>
+      {!notList && <View style={{ flex: 1 }}>
         {selectedDate !== "" && <ClassList date={sDate} variant="coach" />}
-      </View>
+      </View>}
     </View>
   );
 }

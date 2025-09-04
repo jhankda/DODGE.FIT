@@ -14,6 +14,8 @@ import { ClassItem } from '@schemas/user.schema';
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import CalendarIcon from "@assets/icons/CalenderIcon"
+import ArrowLeft from '@assets/icons/arrowRightWhite'
+import SmallButton from "./smallButton";
 
 type Props = {
   filter: "upcoming" | "present" | "past";
@@ -26,6 +28,9 @@ type CardProps = {
   item: ClassItem;
   filter: "upcoming" | "present" | "past";
 };
+
+
+
 
 const UpcomingCard: React.FC<CardProps> = ({ item, filter }) => {
   const router = useRouter();
@@ -52,19 +57,12 @@ const UpcomingCard: React.FC<CardProps> = ({ item, filter }) => {
           </Text>
         </View>
 
-        <TouchableOpacity className="self-start" onPress={handleViewDetails}>
-          <LinearGradient
-            colors={["#8C66E3", "#2900F3"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 2, y: 2 }}
-            className="h-8 px-5 rounded-full flex-row items-center justify-center"
-          >
-            <Text className="text-sm font-medium text-custom-off-white mr-2 leading-[21px]">
-              View Details
-            </Text>
-            <Text className="text-custom-off-white">→</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <SmallButton
+          title='View Details'
+          rightIcon={<ArrowLeft />}
+          gradient
+        />
+
       </View>
 
       <Image
@@ -150,14 +148,14 @@ const ItemList = ({ filter }: Props) => {
   return (
     <View className="pb-20">
 
-    <FlatList
-      data={filteredData}
-      keyExtractor={(item) => item.id.$oid}
-      renderItem={renderListItem}
-      contentContainerStyle={{ padding: 16 }}
-      showsVerticalScrollIndicator={false}
+      <FlatList
+        data={filteredData}
+        keyExtractor={(item) => item.id.$oid}
+        renderItem={renderListItem}
+        contentContainerStyle={{ padding: 16 }}
+        showsVerticalScrollIndicator={false}
       />
-      </View>
+    </View>
   );
 };
 

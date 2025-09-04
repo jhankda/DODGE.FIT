@@ -17,19 +17,21 @@ import PlotIcon from "../../../assets/icons/PlotIcon.svg"
 import { StatusBar } from "expo-status-bar";
 
 export default function Progress() {
+  const router  = useRouter()
   return (
     <KeyboardWrapper>
-      <ScrollView
-        contentContainerStyle={styles.container}
-        keyboardShouldPersistTaps="handled"
+      <View
+        style={styles.container}
+        // keyboardShouldPersistTaps="handled"
       > 
       <HeaderBar
       title="Progress"
       RightIcon={<CalenderIcon width={24} height={24} fill={"#120F1A"} />}
+      onRightPress={()=>{router.push('../secondary/dateRange')}}
       />
       
 
-      </ScrollView>
+      </View>
     </KeyboardWrapper>
   )
 }

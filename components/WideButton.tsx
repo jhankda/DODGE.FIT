@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: 48,
     maxWidth: "auto",
     borderRadius: 24,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
   },
   continueContainer: {
     alignSelf: "center",
