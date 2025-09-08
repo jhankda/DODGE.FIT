@@ -12,6 +12,7 @@ interface DropdownProps {
   options: string[];
   placeholder?: string;
   label?:string;
+  initialValue?:string;
   onSelect?: (value: string) => void;
   icon?: React.ReactNode;
   styleOverrides?: {
@@ -30,10 +31,11 @@ export default function DropdownInput({
   placeholder = "Please choose an option",
   label='Signing up as',
   onSelect,
+  initialValue,
   icon,
   styleOverrides = {},
 }: DropdownProps) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(initialValue||null);
   const [visible, setVisible] = useState(false);
 
   const handleSelect = (option: string) => {

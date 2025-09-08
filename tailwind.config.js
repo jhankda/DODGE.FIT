@@ -25,14 +25,18 @@ module.exports = {
         'custom-green':"#088745",
         'custom-purple1':'#69598C',
         'custom-border-gray':'#E5E8EB',
-        'custom-border-gray2':'#D9D4E3'
+        'custom-border-gray2':'#D9D4E3',
+        'custom-purple2':'#706685',
+        'custom-border3':'#757575',
+        'custom-purple3':'#6B5C8A'
+
 
       },
       fontFamily: {
         sans: ["SpaceGrotesk"],
         bold: ["SpaceGrotesk-Bold"],
-        medium: ["SpaceGrotesk-medium"],
-        light: ["SpaceGrotesk-light"],
+        medium: ["SpaceGrotesk-Medium"],
+        light: ["SpaceGrotesk-Light"],
         normal: ["SpaceGrotesk-Regular"],
       },
     },

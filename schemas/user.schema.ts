@@ -32,19 +32,30 @@ export type ClassDetail = {
 };
 
 export type Exercise = {
-  id: string;
+  id:string,
   name: string;
-  sets: number;
-  reps: number;
-  weight?: number;
+  sets: string;
+  reps: string;
+  weight: string;
   time?: string;
 };
 
 export type MuscleGroup = {
-  id: string;
+  id:string,
   name: string;
   exercises: Exercise[];
 };
+
+export type workoutLog = {
+  id:string,
+  date:string;
+  workout:MuscleGroup[];
+}
+
+export type workList  = {
+  workList:workoutLog[]
+}
+
 
 type Attendance_Summary = {
   Total_Classes: 'atring',
@@ -76,4 +87,12 @@ export type userProfile = {
 }
 
 export type WorkoutPlan = MuscleGroup[];
+
+export type invoice = {
+  id:string,
+  InvoiceId:string,
+  amount:string,
+  date:string,
+  status:boolean
+}
 

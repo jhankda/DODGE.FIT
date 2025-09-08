@@ -1,43 +1,108 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import ArrowLeft from "../../../assets/icons/arrowLeft.svg";
-import ScrollMenu from "../../../assets/icons/ScrollMenu.svg";
-import DropdownInput from "../../../components/dropDownMenu";
-import LabeledInput from "../../../components/labeledInput";
-import HeaderBar from "../../../components/HeaderBar";
-import ContinueButton from "../../../components/WideButton";
-import KeyboardWrapper from "../../../components/FormScreen";
-import HomeIcon from "../../../assets/icons/HomeIcon.svg"
-import PersonIcon from "../../../assets/icons/PersonIcon.svg"
-import CalenderIcon from "../../../assets/icons/CalenderIcon.svg"
-import DunbellIcon from "../../../assets/icons/DunbellIcon.svg"
-import PlotIcon from "../../../assets/icons/PlotIcon.svg"
+import HeaderBar from "@components/HeaderBar";
+import KeyboardWrapper from "@components/FormScreen";
+import CalenderIcon from "@assets/icons/CalenderIcon.svg"
+import ArmsIcon from "@assets/icons/armsIcon.svg"
+import LegsIcon from "@assets/icons/legsIcon.svg"
+import BackIcon from "@assets/icons/backIcon.svg"
+import WeeklyChart from "@components/barChart";
+import RoleSelector from "@components/RoleSelector";
+import { workList } from "@schemas/user.schema";
+import { useFetchWorkoutList } from "@hooks/useUser";
 
 import { StatusBar } from "expo-status-bar";
 
 export default function Progress() {
-  const router  = useRouter()
+
+  const [selectedType, setSelectedType] = useState<string>('')
+  const router = useRouter()
+  const { data, isPending, error } = useFetchWorkoutList()
+
   return (
     <KeyboardWrapper>
-      <View
+      <ScrollView
         style={styles.container}
-        // keyboardShouldPersistTaps="handled"
-      > 
-      <HeaderBar
-      title="Progress"
-      RightIcon={<CalenderIcon width={24} height={24} fill={"#120F1A"} />}
-      onRightPress={()=>{router.push('../secondary/dateRange')}}
-      />
-      
+        showsVerticalScrollIndicator={false}
+      >
+        <HeaderBar
+          title="Progress"
+          RightIcon={<CalenderIcon width={24} height={24} fill={"#120F1A"} />}
+          onRightPress={() => { router.push({
+            pathname:'../secondary/dateRange',
+            params:{backPath:'../secondary/progressFilter'}
+          }) }}
+        />
 
-      </View>
+        <View className="h-15 px-4 pt-5 pb-3">
+          <Text className="h-7 font-bold text-[22px] leading-7  font-sans">Your Workout History</Text>
+        </View>
+
+
+
+        <WeeklyChart
+          variant="workout"
+          data={[
+            { label: "Jul 19", value: 1 },
+            { label: "Jul 20", value: 0.8 },
+            { label: "Jul 21", value: 1.2 },
+            { label: "Jul 22", value: 0.6 },
+            { label: "Jul 23", value: 0.9 },
+          ]}
+        />
+
+        <View className="h-15 px-4 pt-5 pb-3">
+          <Text className="h-7 font-bold text-[22px] leading-7  font-sans">Muscle Groups Trained</Text>
+        </View>
+
+        <RoleSelector
+          roles={[
+            { label: 'Arms-', icon: <ArmsIcon /> },
+            { label: 'Back-', icon: <BackIcon /> },
+            { label: 'Legs-', icon: <LegsIcon /> },
+            { label: 'Core-' },
+            { label: 'Cardio-', icon: <BackIcon /> }
+          ]}
+          selectedRole={selectedType}
+          onSelect={setSelectedType}
+        />
+
+        <View className="h-15 px-4 pt-5 pb-3">
+          <Text className="h-7 font-bold text-[22px] leading-7  font-sans">Past Workouts</Text>
+        </View>
+
+        {data?.workList.map((log) => {
+          const lastMuscleGroup  = log.workout[0]
+          const lastExercise  = lastMuscleGroup.exercises[0]
+          return (
+        <View 
+        key={log.id}
+        className="flex-row min-h-[72px] gap-4 py-2 px-4">
+          <View>
+            <Text className="h-6 font-medium text-base leading-6 font-sans">{log.date}</Text>
+            <Text className="h-[21px] text-sm font-normal leading-[21px] text-custom-purple1">
+              • {lastMuscleGroup.name} - {lastExercise.name} - {lastExercise.sets}x{lastExercise.reps} @ {lastExercise.weight}
+            </Text>
+          </View>
+        </View>
+          )
+        })}
+
+
+
+
+
+
+
+
+      </ScrollView>
     </KeyboardWrapper>
   )
 }
 const styles = StyleSheet.create({
-  container:{
-    height:1674,
+  container: {
+
   }
 })
 

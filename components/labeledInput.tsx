@@ -74,19 +74,15 @@ export default function LabeledInput({
 
 const styles = StyleSheet.create({
   subContainer: {
-    width: "auto",
     height: 112,
-    // maxWidth: "auto",
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
   fieldContainer: {
-    width: "auto",
     height: 88,
     minWidth: 160,
   },
   textContainer: {
-    width: "auto",
     height: 32,
     paddingBottom: 8,
   },
@@ -97,7 +93,6 @@ const styles = StyleSheet.create({
     color: "#120F1A",
   },
   input: {
-    width: "auto",
     height: 56,
     backgroundColor: "#EBE8F2",
     paddingHorizontal: 16,

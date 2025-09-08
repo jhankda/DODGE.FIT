@@ -7,7 +7,7 @@ import ClassList from "./classList";
 
 type calendarProps = {
   notList?:boolean;
-  onPress?:()=>void
+  onPress?:(e:string)=>void
 }
 
 export default function ClassCalendar({notList=false,onPress}:calendarProps) {  
@@ -17,12 +17,13 @@ export default function ClassCalendar({notList=false,onPress}:calendarProps) {
   const onDayPress = (day: any) => {
     setSelectedDate(day.dateString);
     setSDate(new Date(day.timestamp));
+    if(onPress)onPress(day.dateString)
   };
 
   return (
     <View style={[{backgroundColor:"#ffffff", padding: 16 },notList?{flex:0}:{flex:1}]}>
       <Calendar
-        onDayPress={onPress?onPress:onDayPress}
+        onDayPress={onDayPress}
         markedDates={{
           [selectedDate]: {
             selected: true,

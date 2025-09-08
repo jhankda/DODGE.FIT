@@ -1,0 +1,12 @@
+export { default as BillIcon } from "@assets/icons/billIcon.svg";
+export { default as CallIcon } from "@assets/icons/callIcon.svg";
+export { default as MessageIcon } from "@assets/icons/messageIcon.svg";
+export { default as CrossIcon } from "@assets/icons/crossIcon.svg";
+export { default as HomeIcon } from "@assets/icons/HomeIcon.svg";
+export { default as PersonIcon } from "@assets/icons/PersonIcon.svg";
+export { default as CalendarIcon } from "@assets/icons/CalenderIcon.svg";
+export { default as DumbbellIcon } from "@assets/icons/DunbellIcon.svg";
+export { default as PlotIcon } from "@assets/icons/PlotIcon.svg";
+export { default as ArrowLeftIcon } from "@assets/icons/arrowLeft.svg";
+export { default as ScrollMenuIcon } from "@assets/icons/ScrollMenu.svg";
+export { default as PencilIcon } from "@assets/icons/pencilIcon.svg";

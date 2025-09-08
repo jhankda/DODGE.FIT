@@ -80,7 +80,7 @@ export default function UserLayout() {
           }}
         />
         <Tabs.Screen
-          name="progress"
+          name="workoutLogger"
           options={{
             title: 'Workout',
             headerTintColor: '#ca02e5',
@@ -91,7 +91,7 @@ export default function UserLayout() {
           }}
         />
         <Tabs.Screen
-          name="workoutLogger"
+          name="progress"
           options={{
             title: 'Progress',
             tabBarIcon: ({ focused, color, size }) => (

@@ -23,33 +23,34 @@ type ActionListProps = {
   title: string,
   LeftIcon: React.ReactNode,
   onPress?: () => void,
+  notArrow?:boolean
 }
 
+export const Account_Action = ({ title, LeftIcon, onPress, notArrow }: ActionListProps) => {
+  return (
+    <TouchableOpacity className="px-4 min-h-[56px] flex-row  justify-between"
+      onPress={onPress}
+    >
+      <View className="flex-row gap-4 self-center items-center">
+        <View className="h-10 w-10 justify-center rounded-lg bg-custom-icon-bg">
+          {LeftIcon}
+        </View>
+        <Text className="h-6 self-center font-sans font-normal text-base leading-6">{title}</Text>
+      </View>
+      {!notArrow && <View
+        className="self-center justify-center h-7 w-7">
+        <ArrowRight className='h-6 w-6 self-center custom-blue2' />
+      </View>}
+    </TouchableOpacity>
+  )
+}
 export default function Profile() {
 
-  const router  = useRouter()
+  const router = useRouter()
 
   const sty1 = "font-sans font-normal text-sm leading-[21px] text-custom-purple-text"
   const sty2 = "font-sans font-medium text-sm leading-[21px] text-custom-heading";
 
-  const Account_Action = ({ title, LeftIcon, onPress }: ActionListProps) => {
-    return (
-      <View className="px-4 min-h-[56px] flex-row justify-between">
-        <View className="flex-row gap-4">
-          <View className="h-10 w-10 justify-center rounded-lg bg-custom-icon-bg">
-            {LeftIcon}
-          </View>
-          <Text className="h-6 self-center font-sans font-normal text-base leading-6">{title}</Text>
-        </View>
-        <TouchableOpacity
-          className="self-center h-7 w-7"
-          onPress={onPress}>
-          <ArrowRight className='h-6 w-6 justify-center custom-blue2' />
-        </TouchableOpacity>
-
-      </View>
-    )
-  }
 
 
   return (
@@ -67,7 +68,7 @@ export default function Profile() {
           <View className="gap-1">
             <Text
               className="h-[21px] font-sans text-sm font-normal text-custom-purple1 leading-[21px]"
-              onPress={() => console.log('KLKL')}>Edit Profile</Text>
+              onPress={() => router.push('../secondary/editProfile')}>Edit Profile</Text>
             <Text className="h-[20px] font-sans text-base font-bold ">Rana </Text>
             <Text
               className="h-[21px] font-sans text-sm font-normal text-custom-purple1 leading-[21px]"
@@ -100,9 +101,9 @@ export default function Profile() {
 
         <View className="flex-row p-4 justify-end  py-4">
           <SmallButton
-          title="View Details Attendance"
-          leftIcon={<ArrowRight />}
-          onPress={()=>router.push('../secondary/attendanceDetails')}
+            title="View Details Attendance"
+            leftIcon={<ArrowRight />}
+            onPress={() => router.push('../secondary/attendanceDetails')}
           />
         </View>
 
@@ -151,13 +152,14 @@ export default function Profile() {
         <ContinueButton
           title="Manage-Subscription"
           gradient
+          onPress={() => router.push('../secondary/manageSubscription')}
 
         />
         <ContinueButton
           title="View Payment History"
           buttonStyle={{ backgroundColor: "#EBE8F2", marginHorizontal: 16 }}
           textStyle={{ color: '#120D1C' }}
-          onPress={()=>router.push('../secondary/paymentHistory')}
+          onPress={() => router.push('../secondary/paymentHistory')}
         />
         <View className="h-[47px] px-4 pt-4 pb-2">
           <Text className="h-[23px] font-sans text-lg font-bold leading-[23px] text-custom-blue2">Account Accounts</Text>
@@ -166,22 +168,22 @@ export default function Profile() {
         <Account_Action
           title="Change Password"
           LeftIcon={<LockIcon className={'self-center h-6 w-6 bottom-[2px]'} />}
-          onPress={undefined}
+          onPress={() => router.push('/secondary/changePassword')}
         />
         <Account_Action
-          title="Change Password"
+          title="Edit Profile"
           LeftIcon={<EditIcon className={'self-center h-6 w-6 bottom-[2px]'} />}
-          onPress={undefined}
+          onPress={() => router.push('../secondary/editProfile')}
         />
         <Account_Action
-          title="Change Password"
+          title="Contact Support"
           LeftIcon={<CallIcon className={'self-center h-6 w-6 bottom-[2px]'} />}
-          onPress={undefined}
+          onPress={() => router.push('../secondary/contactSupport')}
         />
         <Account_Action
-          title="Change Password"
+          title="Logout"
           LeftIcon={<LogoutIcon className={'self-center h-6 w-6 bottom-[2px]'} />}
-          onPress={undefined}
+          onPress={() => router.push('../secondary/logout')}
         />
 
 
@@ -204,7 +206,7 @@ export default function Profile() {
 }
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
+    paddingBottom: 16,
   }
 })
 

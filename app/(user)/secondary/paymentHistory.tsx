@@ -65,7 +65,7 @@ export default function PaymentHistory() {
         />
 
         <RoleSelector
-        roles={role}
+        roles={role.map((role) => ({ label: role }))}
         selectedRole={selectedFilter}
         onSelect={setSelectedFilter}
         />

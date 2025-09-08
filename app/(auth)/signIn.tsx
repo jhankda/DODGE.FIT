@@ -93,11 +93,11 @@ export default function LoginScreen() {
           <Text style={styles.labelText}>Continue as</Text>
         </View>
 
-       <RoleSelector
-        roles={roles}
-        selectedRole={role}
-        onSelect={setRole}
-      />
+        <RoleSelector
+          roles={roles.map((role) => ({ label: role }))}  // map strings into { label }
+          selectedRole={role}
+          onSelect={(role) => setRole(role)}
+        />
 
         <LabeledInput
           label="Phone number or email"

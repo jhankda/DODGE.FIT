@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
-import { useRouter , useLocalSearchParams} from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import ArrowLeft from "@assets/icons/arrowLeft.svg";
 import ScrollMenu from "@assets/icons/ScrollMenu.svg";
 import DropdownInput from "@components/dropDownMenu";
@@ -22,14 +22,16 @@ type FilterType = "1Week" | "July 2025" | "June 2025" | "Custom Range"
 const Filters: FilterType[] = ["1Week", "July 2025", "June 2025", "Custom Range"]
 
 type params = {
-  RoleList:string[],
-  RoleIcon:string[],
-  backPath:string
+  RoleList?: string[],//for Now
+  RoleIcon?: string[],
+  backPath: string
 }
 
 export default function DateRange() {
-  const parmas  = useLocalSearchParams<{RoleList:string[], backPath:string}>()
+  const parmas = useLocalSearchParams<{ RoleList?: string[], backPath: string }>()
   const [selectedType, setSelectedType] = useState<"1Week" | "July 2025" | "June 2025" | "Custom Range">("1Week")
+  const [selectedStartDate,setSelectedStartDate]  = useState<string>()
+  const [selectedEndDate,setSelectedEndDate]  = useState<string>()
   const router = useRouter()
   return (
     <KeyboardWrapper>
@@ -44,14 +46,17 @@ export default function DateRange() {
         />
 
         <ClassCalendar
-          notList />
+        onPress={setSelectedStartDate}
+          notList
+           />
         <ClassCalendar
+        onPress={setSelectedEndDate}
           notList />
 
         <View className="py-3">
 
           <RoleSelector
-            roles={Filters}
+            roles={Filters.map((role) => ({ label: role }))}
             selectedRole={selectedType}
             onSelect={setSelectedType}
           />
@@ -60,6 +65,12 @@ export default function DateRange() {
         <ContinueButton
           title="Apply Filter"
           gradient
+          onPress={()=>{
+            router.push({
+              pathname:parmas.backPath,
+              params:{selectedStartDate,selectedEndDate}
+            })
+          }}
         />
 
 

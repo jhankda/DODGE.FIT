@@ -18,27 +18,30 @@ import RoleSelector from "@components/RoleSelector";
 import BillIcon from "@assets/icons/billIcon.svg"
 import SmallButton from "@components/smallButton";
 
+const AttendanceList  = ()=>{
+  return(
+    <View className="py-3 px-4 flex-row justify-between">
+      <View>
+        <Text className="h-6 font-sans font-medium text-base leading-6 text-custom-blue">Monday, 15 July 2025</Text>
+        <Text className="h-[21px] font-sans font-normal text-sm leading-[21px] text-custom-purple1">Strngth Training Beginner</Text>
+        <Text className="h-[21px] font-sans font-normal text-sm leading-[21px] text-custom-purple1">Coach Roahan Verma</Text>
+      </View>
+      <View className="flex-row h-7 w-7">
+        <View className="h-3 w-3 rounded-md bg-custom-green"></View>
+      </View>
+
+    </View>
+  )
+}
+
+
+
 export default function AttendanceDetails() {
   const router = useRouter()
   const box = 'rounded-xl border p-6 gap-2 flex-1 min-w-[158px] border-custom-border-gray2'
   const text1  = "h-6 font-sans font-medium text-base leading-6 text-custom-blue";
   const text2  ="h-[30px] font-sans font-bold text-2xl text-custom-blue leading-[30px]";
 
-  const AttendanceList  = ()=>{
-    return(
-      <View className="py-3 px-4 flex-row justify-between">
-        <View>
-          <Text className="h-6 font-sans font-medium text-base leading-6 text-custom-blue">Monday, 15 July 2025</Text>
-          <Text className="h-[21px] font-sans font-normal text-sm leading-[21px] text-custom-purple1">Strngth Training Beginner</Text>
-          <Text className="h-[21px] font-sans font-normal text-sm leading-[21px] text-custom-purple1">Coach Roahan Verma</Text>
-        </View>
-        <View className="flex-row h-7 w-7">
-          <View className="h-3 w-3 rounded-md bg-custom-green"></View>
-        </View>
-
-      </View>
-    )
-  }
 
   return (
     <KeyboardWrapper>
@@ -57,6 +60,7 @@ export default function AttendanceDetails() {
         </View>
 
         <View className="p-4 gap-4 flex-row flex-wrap">
+          
           <View className={box}>
             <Text className={text1}>Total Classes</Text>
             <Text className={text2}>34</Text>
