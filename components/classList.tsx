@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, SectionList } from "react-native";
 import React, { useState, useEffect } from "react";
-import ClockIcon from "@assets/icons/ClockIcon.svg"
-import TrueIcon from "@assets/icons/TrueIcon.svg"
-import FalseIcon from "@assets/icons/FalseIcon.svg"
+import {ClockIcon, TrueIcon, FalseIcon} from "@assets/icons/icons"
 import { getIconComponent } from "@utils/getIconComponent";
 
 interface Class {

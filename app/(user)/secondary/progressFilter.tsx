@@ -1,25 +1,12 @@
-import React, { useRef, useState } from "react";
-import { View, Text, SectionList, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React from "react";
+import { View, Text, SectionList, StyleSheet, } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import ArrowLeft from "@assets/icons/arrowLeft.svg";
-import ScrollMenu from "@assets/icons/ScrollMenu.svg";
-import DropdownInput from "@components/dropDownMenu";
-import LabeledInput from "@components/labeledInput";
+import {ArrowLeft, CalenderIcon, DumbellIcon, EngineIcon} from "@assets/icons/icons";
 import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
 import KeyboardWrapper from "@components/FormScreen";
-import HomeIcon from "@assets/icons/HomeIcon.svg"
-import PersonIcon from "@assets/icons/PersonIcon.svg"
-import CalenderIcon from "@assets/icons/CalenderIcon.svg"
-import DunbellIcon from "@assets/icons/DunbellIcon.svg"
-import PlotIcon from "@assets/icons/PlotIcon.svg"
-import DumbellIcon from "@assets/icons/smallDumbellIcon.svg"
-import EngineIcon from "@assets/icons/engineIcon.svg"
 import RoleSelector from "@components/RoleSelector";
-import { MuscleGroup, workList } from "@schemas/user.schema";
+import { MuscleGroup } from "@schemas/user.schema";
 import { useFetchWorkoutList } from "@hooks/useUser";
-
-import { StatusBar } from "expo-status-bar";
 
 export default function UserDashboard() {
   const params: { selectedStartDate: string, selectedEndDate: string } = useLocalSearchParams()

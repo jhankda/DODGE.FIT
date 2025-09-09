@@ -1,18 +1,13 @@
-import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React, {  useState } from "react";
+import { View, Text, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import HeaderBar from "@components/HeaderBar";
 import KeyboardWrapper from "@components/FormScreen";
-import CalenderIcon from "@assets/icons/CalenderIcon.svg"
-import ArmsIcon from "@assets/icons/armsIcon.svg"
-import LegsIcon from "@assets/icons/legsIcon.svg"
-import BackIcon from "@assets/icons/backIcon.svg"
+import {CalenderIcon, ArmsIcon, LegsIcon, BackIcon} from "@assets/icons/icons"
 import WeeklyChart from "@components/barChart";
 import RoleSelector from "@components/RoleSelector";
-import { workList } from "@schemas/user.schema";
 import { useFetchWorkoutList } from "@hooks/useUser";
 
-import { StatusBar } from "expo-status-bar";
 
 export default function Progress() {
 

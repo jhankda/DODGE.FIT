@@ -13,8 +13,7 @@ import { filterByStatus, formatClassTime } from "@utils/filterByStatus";
 import { ClassItem } from '@schemas/user.schema';
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import CalendarIcon from "@assets/icons/CalenderIcon"
-import ArrowLeft from '@assets/icons/arrowRightWhite'
+import {CalendarIcon,ArrowLeft} from "@assets/icons/icons"
 import SmallButton from "./smallButton";
 
 type Props = {

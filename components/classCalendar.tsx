@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { Calendar } from "react-native-calendars";
-import LeftIcon from '@assets/icons/leftIcon.svg';
-import RightIcon from '@assets/icons/rightIcon.svg';
+import {LeftIcon, RightIcon} from '@assets/icons/icons';
 import ClassList from "./classList";
 
 type calendarProps = {

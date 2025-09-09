@@ -1,18 +1,8 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { Tabs } from 'expo-router';
-import { useFonts } from 'expo-font';
 import KeyboardWrapper from "../../../components/FormScreen";
-import HomeIcon from "@assets/icons/HomeIcon.svg"
-import PersonIcon from "@assets/icons/PersonIcon.svg"
-import CalenderIcon from "@assets/icons/CalenderIcon.svg"
-import DunbellIcon from "@assets/icons/DunbellIcon.svg"
-import PlotIcon from "@assets/icons/PlotIcon.svg"
-import PlotActiveIcon from "@assets/icons/PlotActiveIcon.svg"
-import PersonActiveIcon from "@assets/icons/PersonActiveIcon.svg"
-import DunbellActiveIcon from "@assets/icons/DunbellActiveIcon.svg"
-import HomeInactiveIcon from "@assets/icons/HomeInactiveIcon.svg"
-import CalenderActiveIcon from "@assets/icons/CalenderActiveIcon.svg"
+import {HomeIcon, PersonIcon, CalenderActiveIcon, HomeInactiveIcon, DunbellActiveIcon, PersonActiveIcon, CalenderIcon, DunbellIcon, PlotIcon, PlotActiveIcon} from "@assets/icons/icons"
 
 export default function UserLayout() {
 

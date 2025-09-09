@@ -1,11 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import ArrowLeft from "@assets/icons/arrowLeft.svg";
-import ScrollMenu from "@assets/icons/ScrollMenu.svg";
-import Eye from "../../assets/icons/Eye.svg"
-import DropdownInput from "@components/dropDownMenu";
-import LabeledInput from "@components/labeledInput";
+import {ArrowLeft} from "@assets/icons/icons";
 import HeaderBar from "@components/HeaderBar";
 import ContinueButton from "@components/WideButton";
 import KeyboardWrapper from "@components/FormScreen";

@@ -1,20 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React, {  useRef, useState } from "react";
+import { Text, TextInput, StyleSheet, ScrollView, } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import ArrowLeft from "../../../assets/icons/arrowLeft.svg";
-import ScrollMenu from "../../../assets/icons/ScrollMenu.svg";
+import {ArrowLeft, ScrollMenu} from "@assets/icons/icons";
 import DropdownInput from "../../../components/dropDownMenu";
 import LabeledInput from "../../../components/labeledInput";
 import HeaderBar from "../../../components/HeaderBar";
 import ContinueButton from "../../../components/WideButton";
 import KeyboardWrapper from "../../../components/FormScreen";
-import HomeIcon from "../../../assets/icons/HomeIcon.svg";
-import PersonIcon from "../../../assets/icons/PersonIcon.svg";
-import CalenderIcon from "../../../assets/icons/CalenderIcon.svg";
-import DunbellIcon from "../../../assets/icons/DunbellIcon.svg";
-import PlotIcon from "../../../assets/icons/PlotIcon.svg";
 import { Exercise } from "@schemas/user.schema";
-import { StatusBar } from "expo-status-bar";
 import { formatClassTime } from "@utils/filterByStatus";
 import { useAddWorkout, useUpdateWorkout } from "@hooks/useUser";
 

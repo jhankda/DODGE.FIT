@@ -1,24 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, ImageBackground, Image, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import { View, Image, Text, TextInput, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import ArrowLeft from "@assets/icons/arrowLeft.svg";
-import ScrollMenu from "@assets/icons/ScrollMenu.svg";
+import {ArrowLeft,ScrollMenu} from "@assets/icons/icons";
 import DropdownInput from "@components/dropDownMenu";
 import LabeledInput from "@components/labeledInput";
 import HeaderBar from "@components/HeaderBar";
 import ContinueButton from "@components/WideButton";
 import KeyboardWrapper from "@components/FormScreen";
-import HomeIcon from "@assets/icons/HomeIcon.svg"
-import PersonIcon from "@assets/icons/PersonIcon.svg"
-import CalenderIcon from "@assets/icons/CalenderIcon.svg"
-import DunbellIcon from "@assets/icons/DunbellIcon.svg"
-import PlotIcon from "@assets/icons/PlotIcon.svg"
-import ClassCalendar from "@components/classCalendar";
-import RoleSelector from "@components/RoleSelector";
-import BillIcon from "@assets/icons/billIcon.svg"
-import { Screen } from "react-native-screens";
-import { LinearGradient } from "expo-linear-gradient";
-import { useFetchInvoiceList } from "@hooks/useUser";
 
 export default function EditProfile() {
   const [fullName, setFullName] = useState<string>('')

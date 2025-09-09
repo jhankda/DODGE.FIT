@@ -1,21 +1,10 @@
-import React, { useRef, useState } from "react";
-import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ScrollView, ImageComponent, } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet, } from "react-native";
 import { router, useRouter } from "expo-router";
-import ArrowLeft from "@assets/icons/arrowLeft.svg";
-import ScrollMenu from "@assets/icons/ScrollMenu.svg";
-import DropdownInput from "@components/dropDownMenu";
-import LabeledInput from "@components/labeledInput";
+import {ArrowLeft} from "@assets/icons/icons";
 import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import HomeIcon from "@components/icons/HomeIcon.svg";
-import PersonIcon from "@assets/icons/PersonIcon.svg";
-import CalenderIcon from "@assets/icons/CalenderIcon.svg";
-import DunbellIcon from "@assets/icons/DunbellIcon.svg";
-import PlotIcon from "@assets/icons/PlotIcon.svg";
 import { useWindowDimensions } from "react-native";
 import ClassList from "@components/classList";
-import { StatusBar } from "expo-status-bar";
 
 
 

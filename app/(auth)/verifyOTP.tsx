@@ -5,7 +5,7 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import ContinueButton from "@components/WideButton";
 import KeyboardWrapper from "@components/FormScreen";
 import HeaderBar from "@components/HeaderBar";
-import ArrowLeft from "@assets/icons/arrowLeft.svg";
+import {ArrowLeft} from "@assets/icons/icons";
 import OtpInput from "@components/OtpInput";
 import ResendTimer from "@components/resendTimer";
 import { useVerify, useforgotPass, useSignUp } from "@hooks/useSignIn";

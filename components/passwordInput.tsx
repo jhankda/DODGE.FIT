@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import { View, TextInput, TouchableOpacity } from "react-native";
-import Eye from "@assets/icons/Eye.svg";
+import {Eye} from "@assets/icons/icons";
 import LabeledInput from "@components/labeledInput";
 
 type PasswordInputProps = {

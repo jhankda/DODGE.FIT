@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React, {  useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import HeaderBar from "@components/HeaderBar";
-import {CalendarIcon as CalenderIcon } from "@assets/icons/icons"
+import {CalenderIcon } from "@assets/icons/icons"
 import ItemList from "@components/ItemList";
 
 

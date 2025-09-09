@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView, } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import HeaderBar from "@components/HeaderBar";
 import {PersonIcon} from "@assets/icons/icons";
