@@ -1,10 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import HeaderBar from "@components/HeaderBar";
+import {HeaderBar, Applate, WeeklyChart} from "@components/index";
 import {PersonIcon} from "@assets/icons/icons";
-import Applate from "@components/Applate";
-import WeeklyChart from "@components/barChart";
 
 const router = useRouter()
 export default function UserDashboard() {

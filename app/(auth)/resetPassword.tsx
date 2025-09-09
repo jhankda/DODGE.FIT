@@ -1,13 +1,10 @@
 import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import { View, Text, TextInput, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
+import {HeaderBar, ContinueButton, KeyboardWrapper, PasswordInput} from "@components/index";
 import { StatusBar } from "expo-status-bar";
 import { useResetPass } from "@hooks/useSignIn";
-import PasswordInput from "@components/passwordInput";
 
 
 const router = useRouter()

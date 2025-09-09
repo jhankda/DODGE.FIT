@@ -1,9 +1,8 @@
 import React, {  useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import HeaderBar from "@components/HeaderBar";
-import {CalenderIcon } from "@assets/icons/icons"
-import ItemList from "@components/ItemList";
+import {HeaderBar,ItemList} from "@components/index";
+import {CalenderIcon} from "@assets/icons/icons"
 
 
 

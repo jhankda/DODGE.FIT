@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { Tabs } from 'expo-router';
-import KeyboardWrapper from "../../../components/FormScreen";
+import {KeyboardWrapper} from "@components/index";
 import {HomeIcon, PersonIcon, CalenderActiveIcon, HomeInactiveIcon, DunbellActiveIcon, PersonActiveIcon, CalenderIcon, DunbellIcon, PlotIcon, PlotActiveIcon} from "@assets/icons/icons"
 
 export default function UserLayout() {

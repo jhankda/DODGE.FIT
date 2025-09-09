@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, SplashScreen } from 'expo-router';
+import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from 'expo-font';
 

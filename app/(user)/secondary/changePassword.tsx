@@ -2,10 +2,7 @@ import React, {  useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity,  ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import PasswordInput from "@components/passwordInput";
+import {ContinueButton, HeaderBar, KeyboardWrapper, PasswordInput} from "@components/index";
 
 
 export default function ChangePassword() {

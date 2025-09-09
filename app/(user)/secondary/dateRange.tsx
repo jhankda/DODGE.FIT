@@ -1,12 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import { View, StyleSheet, ScrollView, } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import ClassCalendar from "@components/classCalendar";
-import RoleSelector from "@components/RoleSelector";
+import {HeaderBar,ContinueButton,KeyboardWrapper,ClassCalendar, RoleSelector} from "@components/index";
 
 
 type FilterType = "1Week" | "July 2025" | "June 2025" | "Custom Range"

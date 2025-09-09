@@ -1,11 +1,8 @@
 import React, {  useState } from "react";
 import { View, Text, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
+import {HeaderBar, KeyboardWrapper, WeeklyChart, RoleSelector} from "@components/index";
 import {CalenderIcon, ArmsIcon, LegsIcon, BackIcon} from "@assets/icons/icons"
-import WeeklyChart from "@components/barChart";
-import RoleSelector from "@components/RoleSelector";
 import { useFetchWorkoutList } from "@hooks/useUser";
 
 

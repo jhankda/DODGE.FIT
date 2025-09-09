@@ -1,5 +1,5 @@
 import React from 'react';
-import KeyboardWrapper from "@components/FormScreen";
+import {KeyboardWrapper} from "@components/index";
 import { Stack } from 'expo-router';
 
 export default function RootLayout() {

@@ -2,9 +2,7 @@ import React from "react";
 import { View, Text, SectionList, StyleSheet, } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import {ArrowLeft, CalenderIcon, DumbellIcon, EngineIcon} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
-import RoleSelector from "@components/RoleSelector";
+import {HeaderBar, KeyboardWrapper, RoleSelector} from "@components/index";
 import { MuscleGroup } from "@schemas/user.schema";
 import { useFetchWorkoutList } from "@hooks/useUser";
 

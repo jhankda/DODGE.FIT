@@ -2,9 +2,8 @@ import React from "react";
 import { View, Text, Image, StyleSheet, } from "react-native";
 import { router, useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
+import {HeaderBar,ClassList} from "@components/index";
 import { useWindowDimensions } from "react-native";
-import ClassList from "@components/classList";
 
 
 

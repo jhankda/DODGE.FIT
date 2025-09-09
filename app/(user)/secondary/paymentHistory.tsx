@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft, BillIcon} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
-import RoleSelector from "@components/RoleSelector";
+import {HeaderBar, KeyboardWrapper, RoleSelector} from "@components/index";
 
 
 const role  = ["Last 30 Days","June 2025","Custom Range"];

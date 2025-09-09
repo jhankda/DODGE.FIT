@@ -1,11 +1,8 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import LabeledInput from "@components/labeledInput";
+import {ContinueButton, KeyboardWrapper, LabeledInput, RoleSelector} from "@components/index";
 import { useLogin } from "@hooks/useSignIn";
-import RoleSelector from "@components/RoleSelector";
 
 export default function LoginScreen() {
   const [role, setRole] = useState<"User" | "Coach" | "Scanner Device">("User");

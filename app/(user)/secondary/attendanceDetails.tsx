@@ -2,9 +2,7 @@ import React, { } from "react";
 import { View, Text, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
-import SmallButton from "@components/smallButton";
+import {SmallButton, HeaderBar, KeyboardWrapper} from "@components/index";
 
 const AttendanceList  = ()=>{
   return(

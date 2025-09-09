@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
+import React, {  useState } from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import HeaderBar from "@components/HeaderBar";
+import { HeaderBar, ContinueButton, KeyboardWrapper, OtpInput, ResendTimer} from "@components/index";
 import {ArrowLeft} from "@assets/icons/icons";
-import OtpInput from "@components/OtpInput";
-import ResendTimer from "@components/resendTimer";
-import { useVerify, useforgotPass, useSignUp } from "@hooks/useSignIn";
+import { useVerify, useforgotPass } from "@hooks/useSignIn";
 
 
 const router = useRouter()

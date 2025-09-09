@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, SectionList, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Text, SectionList, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
+import {HeaderBar, KeyboardWrapper, ContinueButton, RoleSelector} from "@components/index";
 import {PencilIcon} from "@assets/icons/icons";
-import ContinueButton from "@components/WideButton";
 import { formatClassTime } from "@utils/filterByStatus";
-import RoleSelector from "@components/RoleSelector";
 import { Exercise } from "@schemas/user.schema";
 import { useFetchWorkout } from "@hooks/useUser";
 

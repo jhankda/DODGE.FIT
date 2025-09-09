@@ -2,9 +2,7 @@ import React from "react";
 import { View, ImageBackground, Text, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
+import {HeaderBar,ContinueButton,KeyboardWrapper} from "@components/index";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFetchInvoiceList } from "@hooks/useUser";
 

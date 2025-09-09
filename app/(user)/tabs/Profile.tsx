@@ -2,10 +2,7 @@ import React  from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowRight, EditIcon, LockIcon, CallIcon, LogoutIcon} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import SmallButton from "@components/smallButton";
+import {HeaderBar,ContinueButton, KeyboardWrapper, SmallButton} from "@components/index";
 
 type ActionListProps = {
   title: string,

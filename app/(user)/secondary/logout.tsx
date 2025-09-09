@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, ImageBackground, Image, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React from "react";
+import { View, Text, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
+import {HeaderBar,ContinueButton,KeyboardWrapper} from "@components/index";
 import {CrossIcon} from "@assets/icons/icons";
 
 export default function Logout() {

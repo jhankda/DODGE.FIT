@@ -1,16 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, ImageBackground, Image, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft, ScrollMenu, CallIcon, MessageIcon} from "@assets/icons/icons";
-import DropdownInput from "@components/dropDownMenu";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
-import RoleSelector from "@components/RoleSelector";
-import { Screen } from "react-native-screens";
-import { LinearGradient } from "expo-linear-gradient";
-import { useFetchInvoiceList } from "@hooks/useUser";
-import UploadBox from "@components/uploadBox";
+import {ContinueButton, HeaderBar, DropdownInput, KeyboardWrapper, UploadBox} from "@components/index";
 import { Account_Action } from "../tabs/Profile";
 
 export default function () {

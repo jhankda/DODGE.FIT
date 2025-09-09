@@ -2,11 +2,7 @@ import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft, ScrollMenu} from "@assets/icons/icons";
-import DropdownInput from "@components/dropDownMenu";
-import LabeledInput from "@components/labeledInput";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
+import {DropdownInput, LabeledInput, HeaderBar, ContinueButton, KeyboardWrapper} from "@components/index";
 import { useSignUp } from "@hooks/useSignIn";
 
 

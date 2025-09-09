@@ -2,9 +2,7 @@ import React  from "react";
 import { View, StyleSheet, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import HeaderBar from "@components/HeaderBar";
-import KeyboardWrapper from "@components/FormScreen";
-import ClassCalendar from "@components/classCalendar";
+import {HeaderBar, KeyboardWrapper, ClassCalendar} from "@components/index";
 
 export default function CalenderView() {
   const router  = useRouter();

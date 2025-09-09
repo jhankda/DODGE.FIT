@@ -2,10 +2,7 @@ import React, { useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowLeft} from "@assets/icons/icons";
-import LabeledInput from "@components/labeledInput";
-import HeaderBar from "@components/HeaderBar";
-import ContinueButton from "@components/WideButton";
-import KeyboardWrapper from "@components/FormScreen";
+import {LabeledInput, HeaderBar, ContinueButton, KeyboardWrapper} from "@components/index";
 import { StatusBar } from "expo-status-bar";
 import { useforgotPass } from "@hooks/useSignIn";
 
