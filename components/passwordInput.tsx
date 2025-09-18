@@ -31,7 +31,7 @@ const PasswordInput = forwardRef<TextInput, PasswordInputProps>(
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-      <View className="flex-row max-h-[112px] flex-1 relative">
+      <View className="flex-row max-h-[112px] flex-1">
         <LabeledInput
           label={label}
           value={value}

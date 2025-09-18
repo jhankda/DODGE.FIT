@@ -7,10 +7,10 @@ import { StatusBar } from "expo-status-bar";
 import { useforgotPass } from "@hooks/useSignIn";
 
 
-const router = useRouter()
 
 
 export default function forgotPassword() {
+  const router = useRouter()
   const [phoneNumber, setPhoneNumber] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const { mutate: forgotPass, isPending, error } = useforgotPass();
@@ -100,7 +100,7 @@ export default function forgotPassword() {
 
             <ContinueButton
               title="Send OTP"
-              onPress={HandleForgotPass}
+              onPress={isPending?undefined:HandleForgotPass}
               gradient />
 
           </View>

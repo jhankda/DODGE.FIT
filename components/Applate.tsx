@@ -8,6 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 interface PlateProps {
   title: string;
@@ -57,7 +58,7 @@ export default function Applate() {
           subtitle="3 upcoming"
           title="My Classes"
           image={require("../assets/Calender.png")}
-          onPress={() => router.replace("./myClass")}
+          onPress={() => router.push("(user)/tabs/myClass")}
         />
       </View>
 
@@ -65,12 +66,18 @@ export default function Applate() {
         <Plate
           title="Workout Log"
           image={require("../assets/progress.png")}
-          onPress={() => console.log("Progress clicked")}
+          onPress={() => router.push('./progress')}
         />
         <Plate
           title="KPIs Coming Soon"
           image={require("../assets/Roaster.png")}
-          onPress={() => console.log("Roster clicked")}
+          onPress={() => {Toast.show({
+            position:'bottom',
+            type:'info',
+            text1:'Coming Soon',
+            swipeable:true,
+            bottomOffset:80
+          })}}
         />
 
       </View>

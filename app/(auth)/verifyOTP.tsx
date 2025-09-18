@@ -32,10 +32,10 @@ type Flow = "signup" | "forgot";
 export default function verifyOTP() {
   const [otp, setOTP] = useState<string>()
   const { mutate: verifyOtp, isPending, error } = useVerify();
-  const { mutate: forgotResend, isPending: isLoading1, error: iserror1 = error } = useforgotPass();
   const { mutate: signUpResend, isPending: isLoading2, error: iserror2 = error } = useforgotPass();
-
+  
   const { data: datastring, flow, nextPath } = useLocalSearchParams<{ data: string; nextPath: string; flow: string }>();
+  const { mutate: forgotResend, isPending: isLoading1, error: iserror1 = error } = useforgotPass();
 
   const data = JSON.parse(datastring)
   console.log("DATA", data)
@@ -109,7 +109,7 @@ export default function verifyOTP() {
           />
 
           <ResendTimer
-            duration={5}
+            duration={30}
             onResend={handleResend}
           />
 
@@ -119,7 +119,7 @@ export default function verifyOTP() {
           <ContinueButton
             title={isPending ? "verifying..." : "verify"}
             gradient
-            onPress={handleVerify}
+            onPress={isPending?undefined:handleVerify}
           />
         </View>
 

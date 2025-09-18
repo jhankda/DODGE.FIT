@@ -2,33 +2,8 @@ import React  from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import { useRouter } from "expo-router";
 import {ArrowRight, EditIcon, LockIcon, CallIcon, LogoutIcon} from "@assets/icons/icons";
-import {HeaderBar,ContinueButton, KeyboardWrapper, SmallButton} from "@components/index";
+import {HeaderBar,ContinueButton, Account_Action, KeyboardWrapper, SmallButton} from "@components/index";
 
-type ActionListProps = {
-  title: string,
-  LeftIcon: React.ReactNode,
-  onPress?: () => void,
-  notArrow?:boolean
-}
-
-export const Account_Action = ({ title, LeftIcon, onPress, notArrow }: ActionListProps) => {
-  return (
-    <TouchableOpacity className="px-4 min-h-[56px] flex-row  justify-between"
-      onPress={onPress}
-    >
-      <View className="flex-row gap-4 self-center items-center">
-        <View className="h-10 w-10 justify-center rounded-lg bg-custom-icon-bg">
-          {LeftIcon}
-        </View>
-        <Text className="h-6 self-center font-sans font-normal text-base leading-6">{title}</Text>
-      </View>
-      {!notArrow && <View
-        className="self-center justify-center h-7 w-7">
-        <ArrowRight className='h-6 w-6 self-center custom-blue2' />
-      </View>}
-    </TouchableOpacity>
-  )
-}
 export default function Profile() {
 
   const router = useRouter()

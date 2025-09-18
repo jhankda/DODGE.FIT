@@ -7,13 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-blue2':'#0D0D1C',
+        'custom-blue2': '#0D0D1C',
         'custom-blue': "#120F1A",
         'custom-text-dark': '#120F1A',
         'custom-icon-bg': '#EDE8F2',
         'custom-purple-text': '#634F96',
         'custom-border': '#E6E8EB',
         'custom-green-dot': '#088745',
+        'custom-red-dot': '#F44336',
         'custom-button-bg': '#EBE8F2',
         'custom-heading': '#120D1C',
         'custom-text-light': '#6E6387',
@@ -22,13 +23,19 @@ module.exports = {
         'custom-purple-dark': '#2900F3',
         'custom-purple-light': '#A881FF',
         'custom-off-white': '#FAFAFA',
-        'custom-green':"#088745",
-        'custom-purple1':'#69598C',
-        'custom-border-gray':'#E5E8EB',
-        'custom-border-gray2':'#D9D4E3',
-        'custom-purple2':'#706685',
-        'custom-border3':'#757575',
-        'custom-purple3':'#6B5C8A'
+        'custom-green': "#088745",
+        'custom-purple1': '#69598C',
+        'custom-border-gray': '#E5E8EB',
+        'custom-border-gray2': '#D9D4E3',
+        'custom-purple2': '#706685',
+        'custom-border3': '#757575',
+        'custom-purple3': '#6B5C8A',
+        'custom-offwhite3': '#FAF7FC',
+        'custom-purple4': '#61479E',
+        'custom-purple5':'#66578F',
+        'custom-purple6':'#EBE5F5',
+        'custom-purple7':'#4A479E',
+        'custom-purple8':'#574A9C'
 
 
       },
@@ -40,7 +47,7 @@ module.exports = {
         normal: ["SpaceGrotesk-Regular"],
       },
     },
-    
+
   },
-  plugins: [],
+  plugin: []
 };

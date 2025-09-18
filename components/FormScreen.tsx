@@ -39,7 +39,7 @@ const KeyboardAvoidingWrapper: React.FC<KeyboardAvoidingWrapperProps> = ({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#FFFFFF",
   },
 });
 

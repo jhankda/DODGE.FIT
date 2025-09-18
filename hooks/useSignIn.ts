@@ -2,6 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { loginApi, LoginPayload, forgotPassApi, ForgotPassPayload, verifyPayload, verifyAPI, resetPassPayload, resetPassAPI, signUpPayload, signUpAPI } from "@api/signIn";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
+
 
 export function useLogin() {
   const router = useRouter();
@@ -11,14 +13,32 @@ export function useLogin() {
     onSuccess: async (data) => {
       await SecureStore.setItemAsync("token", data.session_token);
       await SecureStore.setItemAsync("role", data.role);
-      console.log("Success");
-
-      if (data.role === "user") router.replace("/tabs/userDashboard");
-      if (data.role === "coach") router.replace("/(coach)");
-      if (data.role === "admin") router.replace("/(admin)");
+      switch (data.role) {
+        case "User":
+          router.replace("(user)/tabs");
+          break;
+        case "Coach":
+          router.replace("/(coach)/tabs");
+          break;
+        case "Scanner Device":
+          router.replace("/(scanner)/scanScreen");
+          break;
+        default:
+          break;
+      }
+      Toast.show({
+        position:'bottom',
+        type:'success',
+        text2:'Welcome Back',
+        text2Style:{fontSize:16,fontFamily:'space-grotesk',color:'#69598C'}
+      })
     },
     onError: (error: any) => {
-      console.error("Login failed:", error.message);
+      Toast.show({
+        position:'bottom',
+        type:"error",
+        text1:error.message || "Login Failed"
+      })
     },
   });
 };
@@ -52,9 +72,9 @@ export function useVerify() {
 };
 
 export function useResetPass() {
-  const router  = useRouter()
+  const router = useRouter()
   return useMutation({
-    mutationFn: async (payload:{newPassword:string}) => {
+    mutationFn: async (payload: { newPassword: string }) => {
       const token = await SecureStore.getItemAsync("pass_regenrate_token");
 
       if (!token) throw new Error("No reset token found");
@@ -79,7 +99,7 @@ export function useSignUp() {
   return useMutation({
     mutationFn: (payload: signUpPayload) => signUpAPI(payload),
     onSuccess: async (data) => {
-      await SecureStore.setItemAsync("signUp_token",data.pass_regenrate_token)
+      await SecureStore.setItemAsync("signUp_token", data.pass_regenrate_token)
     },
     onError: (error: any) => {
       console.error("Login failed:", error.message);

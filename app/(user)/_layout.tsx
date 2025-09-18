@@ -14,12 +14,8 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: '#FAFAFA' },
         }}
       >
-        <Stack.Screen name="(subpages)" />
         <Stack.Screen name="tabs" />
         <Stack.Screen name="secondary" />
-        {/* <Stack.Screen name="tabs/myClass" /> */}
-        {/* <Stack.Screen name="(admin)" />
-        <Stack.Screen name="(scanner)" /> */}
       </Stack>
     </>
   );

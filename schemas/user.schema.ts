@@ -1,7 +1,5 @@
 export type ClassItem = {
-  id: {
-    $oid: string;
-  };
+  id:string;
   name: string;
   time: string;
   startDate: string;
@@ -12,9 +10,7 @@ export type ClassItem = {
   attended?: boolean
 };
 export type ClassDetail = {
-  id: {
-    $oid: string;
-  };
+  id:string;
   name: string;
   slug: string;
   time: string;

@@ -22,21 +22,20 @@ export function useFetchClassList() {
     refetchOnReconnect:false
   });
 };
+
 export function useFetchClassDetailsList(id:string) {
   console.log("fetch")
   return useQuery<ClassDetail, Error>({
-    queryKey: ["classDetail"],
+    queryKey: ["ID",id],
     queryFn: async () => {
       // const token = await SecureStore.getItemAsync("AUTH_TOKEN");
       const token="harsh"
+      console.log("ID",id)
 
       if (!token) throw new Error("No token found");
 
       return fetchClassDetailsApi(token,id);
     },
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
-    refetchOnReconnect:false
   });
 };
 
@@ -58,6 +57,8 @@ export function useFetchUserProfile() {
     refetchOnReconnect:false
   });
 };
+
+
 export function useFetchWorkout() {
   console.log("fetchWorkout")
   return useQuery<workoutLog, Error>({
@@ -117,6 +118,7 @@ export function useFetchWorkoutList() {
     refetchOnReconnect:false
   });
 };
+
 export function useFetchInvoiceList() {
   console.log("fetchWorkout")
   return useQuery<invoice[], Error>({

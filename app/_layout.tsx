@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from 'expo-font';
+import Toast from "react-native-toast-message";
+
 
 export default function RootLayout() {
   const [queryClient] = useState(() => new QueryClient());
@@ -14,7 +16,7 @@ export default function RootLayout() {
     "SpaceGrotesk-Regular": require("./../assets/fonts/SpaceGrotesk-Regular.ttf"),
     "SpaceGrotesk-SemiBold": require("./../assets/fonts/SpaceGrotesk-SemiBold.ttf"),
   })
-  if(loaded){null}
+  if (loaded) { null }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -26,12 +28,13 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(user)" />
-        {/*
-         <Stack.Screen name="(coach)" />
-        <Stack.Screen name="(admin)" />
+        <Stack.Screen name="(coach)" />
         <Stack.Screen name="(scanner)" /> 
-        */}
+        <Stack.Screen name="shared" /> 
       </Stack>
+      <Toast />
+
     </QueryClientProvider>
+
   );
 }

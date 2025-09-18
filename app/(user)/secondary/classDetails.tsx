@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import {ArrowLeft} from "@assets/icons/icons";
-import {ContinueButton, HeaderBar, KeyboardWrapper} from "@components/index";
+import { ArrowLeft } from "@assets/icons/icons";
+import { ContinueButton, HeaderBar, KeyboardWrapper } from "@components/index";
 import { useFetchClassDetailsList } from "@hooks/useUser";
 import { getClassImage } from "@utils/getClassImage";
 import { formatClassTime } from "@utils/filterByStatus";
 
 export default function classDetails() {
   const { id } = useLocalSearchParams<{ id: string }>()
+  console.log("FSfs",id)
   const { data, isLoading, error } = useFetchClassDetailsList(id)
   const [isLive, setIsLive] = useState<boolean>(false)
 
   const router = useRouter()
-  console.log(data, "PPPPPPPPPPPPPPPPPPPPPPPPPPP")
 
   useEffect(() => {
 
@@ -24,28 +24,26 @@ export default function classDetails() {
     }
     setIsLive(false)
   }, [])
-  type NotesProps  = {
-            title:string,
-            content:string | undefined
-        }
-  const Notes = ({title,content}:NotesProps) => {
+  type NotesProps = {
+    title: string,
+    content: string | undefined
+  }
+  const Notes = ({ title, content }: NotesProps) => {
     return (
       <>
-        <View className=" px-4 pt-5 pb-3">
+        <View className={" px-4 pt-5 pb-3" + `${isLoading? "bg-custom0":''}`}>
           <Text className="font-sans font-bold text-custom-heading text-[22px] leading-[28px]">
             {title}
           </Text>
         </View>
         <Text className="font-sans font-normal text-base px-4 pt-1 pb-3 leading-6">
-        {content}
+          {content}
         </Text>
       </>
     )
   }
 
-
-
-
+    
   return (
     <KeyboardWrapper>
       <ScrollView
@@ -66,8 +64,8 @@ export default function classDetails() {
 
         <View className="flex-row items-center px-4 mb-4 py-2 gap-4  h-[72px]">
           <Image
-            source={getClassImage(data?.image)}
-            className="w-14 h-14 rounded-lg"
+            source={{uri:data?.image}}
+            className="w-14 h-14 rounded-lg bg-custom-icon-bg"
           />
           <View className="flex flex-col justify-center">
             <Text className="text-base font-medium leading-6 text-[#120D1C]">
@@ -134,14 +132,14 @@ export default function classDetails() {
           </View>
         </View>
 
-        <Notes title={"Coach's Notes"} content={data?.notes}/>
-        <Notes title={"info"} content={data?.info}/>
-        <Notes title={"Workout Log"} content={data?.workoutLog}/>
+        <Notes title={"Coach's Notes"} content={data?.notes} />
+        <Notes title={"info"} content={data?.info} />
+        <Notes title={"Workout Log"} content={data?.workoutLog} />
 
         <ContinueButton
-        title="Present"
-        buttonStyle={{backgroundColor: "#EBE8F2",marginHorizontal:16}}
-        textStyle={{color:'#120D1C'}}
+          title="Present"
+          buttonStyle={{ backgroundColor: "#EBE8F2", marginHorizontal: 16 }}
+          textStyle={{ color: '#120D1C' }}
         />
 
       </ScrollView>

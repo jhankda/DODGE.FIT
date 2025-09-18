@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAFAFA",
   },
   backButtonContainer: {
-    justifyContent: "space-between",
+    justifyContent: "center",
     flexDirection: "row",
     width: 48,
     height: 48,

@@ -18,7 +18,7 @@ export default function UserDashboard() {
       <HeaderBar
         title="Dodge.fit"
         RightIcon={<PersonIcon width={24} height={24} fill={"#120F1A"} />}
-        onRightPress={() => router.replace('./Profile')}
+        onRightPress={() => router.push('tabs/Profile')}
       />
 
       <View style={{ width: "auto", height: 218, maxHeight: 218, backgroundColor: "#D9D9D9" }}>

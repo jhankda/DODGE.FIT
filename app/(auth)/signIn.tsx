@@ -1,7 +1,19 @@
 import React, { useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import { useRouter } from "expo-router";
-import {ContinueButton, KeyboardWrapper, LabeledInput, RoleSelector} from "@components/index";
+import {
+  ContinueButton,
+  KeyboardWrapper,
+  LabeledInput,
+  RoleSelector,
+} from "@components/index";
 import { useLogin } from "@hooks/useSignIn";
 
 export default function LoginScreen() {
@@ -9,27 +21,23 @@ export default function LoginScreen() {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-
-  const [password, setPassword] = useState<string | undefined>()
+  const [password, setPassword] = useState<string | undefined>();
   const { mutate: login, isPending, error } = useLogin();
 
+  const passwordRef = useRef<TextInput>(null);
+  const emailRef = useRef<TextInput>(null);
 
-  const passwordRef = useRef<TextInput>(null)
-  const emailRef = useRef<TextInput>(null)
-
-  const router = useRouter()
-  type Role = "User" | "Coach" | "Scanner Device"
+  const router = useRouter();
+  type Role = "User" | "Coach" | "Scanner Device";
   const roles: Role[] = ["User", "Coach", "Scanner Device"];
 
-
   const handleSignUp = () => {
-    router.push('/signUp')
-  }
+    router.push("/signUp");
+  };
 
   const HandleLogin = () => {
-    return router.replace('/tabs/userDashboard')
+
     if (!email && !phoneNumber) {
       emailRef.current?.focus();
       console.log("Invalid input");
@@ -51,7 +59,6 @@ export default function LoginScreen() {
 
   const handleChange = (text: string) => {
     setInput(text);
-
     setEmail("");
     setPhoneNumber("");
 
@@ -63,35 +70,33 @@ export default function LoginScreen() {
     } else if (phoneRegex.test(text)) {
       setPhoneNumber(text);
     }
-
   };
-
-
 
   return (
     <KeyboardWrapper>
-      <ScrollView contentContainerStyle={styles.container}
-        keyboardShouldPersistTaps="handled">
-
-
-        <View style={styles.logoContainer}>
+      <ScrollView
+        className="flex-1 bg-white flex-grow"
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{flexGrow:1}}
+      >
+        <View className="bg-black h-[218px] items-center border border-black">
           <Image
             source={require("../../assets/5704763513866df30b54994f20a78ec4bbb793ce.png")}
-            style={styles.logo}
+            className="h-[218px] w-full"
             resizeMode="contain"
           />
-        </View >
-
-        <View style={styles.title}>
-          <Text style={styles.titleText}>Welcome Back!</Text>
         </View>
 
-        <View style={[styles.label, { top: 298 }]} >
-          <Text style={styles.labelText}>Continue as</Text>
+        <View className="py-5 px-4 items-center">
+          <Text className="text-2xl font-bold text-black">Welcome Back!</Text>
+        </View>
+
+        <View className="px-4 py-4">
+          <Text className="text-lg font-bold text-black">Continue as</Text>
         </View>
 
         <RoleSelector
-          roles={roles.map((role) => ({ label: role }))}  // map strings into { label }
+          roles={roles.map((role) => ({ label: role }))}
           selectedRole={role}
           onSelect={(role) => setRole(role)}
         />
@@ -102,8 +107,9 @@ export default function LoginScreen() {
           onChangeText={handleChange}
           placeholder="Enter your phone number or email"
           inputRef={emailRef}
-          onNext={() => { passwordRef.current?.focus() }}
-          containerStyle={{ position: "static", top: 382 }}
+          onNext={() => {
+            passwordRef.current?.focus();
+          }}
           keyboardType="email-address"
         />
         <LabeledInput
@@ -113,176 +119,31 @@ export default function LoginScreen() {
           placeholder="Enter your password"
           inputRef={passwordRef}
           isLast
-          onSubmit={() => { }}
-          containerStyle={{ position: "static", top: 482 }}
         />
 
-        <ContinueButton
-          title="Sign In"
-          gradient
-          onPress={HandleLogin}
-          containerStyle={{ top: 601, position: "static" }}
-        />
-
+        <ContinueButton title={isPending?"Signing In ...":"Sign In"} gradient onPress={isPending?undefined:HandleLogin} />
 
         <TouchableOpacity
-          style={styles.forgotContainer}
+          className="px-3 pt-1 pb-3"
           onPress={() => {
-            router.push("/forgotPassword")
+            router.push("/forgotPassword");
           }}
         >
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+          <Text className="text-custom-purple-text text-sm font-normal">
+            Forgot Password?
+          </Text>
         </TouchableOpacity>
 
-        <View style={styles.signupContainer}>
-          <View style={styles.signupTextContainer}>
-
-            <Text style={styles.signupText}>
-              Don’t have an account?
-              <TouchableOpacity onPress={handleSignUp}>
-                <Text
-                  style={styles.signupLink}> Sign Up</Text>
-              </TouchableOpacity>
-            </Text>
-            <View style={[]}></View>
-
-          </View>
+        <View className="mt-auto py-3">
+          <Text className="text-center text-sm font-normal text-custom-purple-text">
+            Don’t have an account?
+            <Text
+              className="text-custom-purple-text"
+              onPress={handleSignUp}
+            >{` Sign Up`}</Text>
+          </Text>
         </View>
-
       </ScrollView>
     </KeyboardWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    height: 844,
-    minHeight: 844,
-  },
-  logoContainer: {
-    backgroundColor: "#000000",
-    height: 218,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#000000"
-
-  },
-  logo: {
-    height: 218
-  },
-  title: {
-    height: 58,
-    position: "static",
-    paddingTop: 20,
-    paddingBottom: 8,
-    paddingHorizontal: 16,
-    alignSelf: "center",
-  },
-  titleText: {
-    height: 30,
-    lineHeight: 30,
-    letterSpacing: 0,
-    textAlign: "center",
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#000000"
-
-  },
-  label: {
-    height: 47,
-    position: "static",
-    padding: 16,
-    paddingBottom: 8
-  },
-  labelText: {
-    height: 23,
-    fontSize: 18,
-    lineHeight: 23,
-    letterSpacing: 0,
-    fontWeight: "700",
-  },
-  roleContainer: {
-    height: 56,
-    top: 337,
-    left: 1,
-    padding: 12,
-    gap: 12,
-    position: "static",
-    flexDirection: "row",
-  },
-  roleButton: {
-    height: 32,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    backgroundColor: "#EBE8F2",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-  },
-  roleButtonActive: {
-    backgroundColor: "#d8cbe8"
-  },
-  roleButtonText: {
-    height: 21,
-    fontSize: 14,
-    lineHeight: 21,
-    letterSpacing: 0,
-    fontWeight: "500",
-    color: "#120F1A"
-  },
-
-  forgotContainer: {
-    height: 37,
-    position: "static",
-    left: 1,
-    paddingHorizontal: 12,
-    paddingTop: 4,
-    paddingBottom: 12
-  },
-  forgotPassword: {
-    height: 21,
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 21,
-    letterSpacing: 0,
-    color: "#66578F",
-  },
-  signupContainer: {
-    height: 57,
-    top: 787,
-    position: "static",
-  },
-  signupTextContainer: {
-    height: 37,
-    paddingHorizontal: 16,
-    paddingTop: 4,
-    paddingBottom: 12,
-  },
-  signupText: {
-    textAlign: "center",
-    height: 21,
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 21,
-    letterSpacing: 0,
-    color: "#66578F",
-
-  },
-  signupLink: {
-    top: 6,
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 21,
-    letterSpacing: 0,
-    color: "#66578F"
-  },
-  blankContainer: {
-    height: 40,
-    marginBottom: 50,
-  }
-
-
-});
-
-

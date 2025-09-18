@@ -13,7 +13,7 @@ function QrComponent() {
     <View style={styles.qrContainer}>
       <View style={styles.qrBox}>
         <Image
-          source={require("@assets/myQR.png")}
+          source={{uri:''}}
           style={[styles.image, { height: width * 201 / 390 }]}
         />
         <View style={styles.textContainer}>

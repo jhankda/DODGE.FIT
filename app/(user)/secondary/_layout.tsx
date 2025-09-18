@@ -12,6 +12,8 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="myQR" />
+        <Stack.Screen name="changePassword" />
+
         {/* <Stack.Screen name="(us" /> */}
         {/*
          <Stack.Screen name="(coach)" />
